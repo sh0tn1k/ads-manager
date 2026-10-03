@@ -1,0 +1,19 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+telegram_ads_manager.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+build/
+*.sqlite
+*.db
+data/*
+!data/.gitkeep
+.idea/
+.vscode/
+Telegram Ads_files/

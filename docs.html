@@ -1,0 +1,3431 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)https://ads.telegram.org/docs/api -->
+<html data-theme="light"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Telegram Ads</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="MobileOptimized" content="176">
+<meta name="HandheldFriendly" content="True"><meta name="twitter:card" content="summary">
+<meta property="og:title" content="Telegram Ads API">
+<meta property="og:description" content="Recent changes
+September 18, 2026
+Added the field currency to the classes Account, Ad, TransactionStatus, AccountTransaction…">
+
+    <link rel="icon" type="image/svg+xml" href="https://ads.telegram.org/img/website_icon.svg?4">
+<link rel="apple-touch-icon" sizes="180x180" href="https://ads.telegram.org/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ads.telegram.org/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ads.telegram.org/img/favicon-16x16.png">
+<link rel="alternate icon" href="https://ads.telegram.org/img/favicon.ico" type="image/x-icon">
+    <script>document.cookie="stel_dt="+encodeURIComponent((new Date).getTimezoneOffset())+";path=/;max-age=31536000;samesite=None;secure"</script>
+    
+    <link href="./Telegram Ads_files/font-roboto.css" rel="stylesheet" type="text/css">
+    <link href="./Telegram Ads_files/bootstrap.min.css" rel="stylesheet">
+    <link href="./Telegram Ads_files/bootstrap-extra.css" rel="stylesheet">
+    <link href="./Telegram Ads_files/telegram.css" rel="stylesheet">
+<link href="./Telegram Ads_files/widget-frame.css" rel="stylesheet">
+<link href="./Telegram Ads_files/promote.css" rel="stylesheet">
+<link href="./Telegram Ads_files/jquery-ui.min.css" rel="stylesheet">
+<link href="./Telegram Ads_files/tchart.min.css" rel="stylesheet">
+<link href="./Telegram Ads_files/promote-dark.css" rel="stylesheet">
+
+  </head>
+  <body class="emoji_image" style="position: relative;" cz-shortcut-listen="true">
+      <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <defs>
+      <path id="icon-currency-ton" d="M9.97 3.56C10.55 3.56 10.84 3.56 11.1 3.64 11.34 3.71 11.55 3.83 11.74 3.99 11.95 4.16 12.1 4.41 12.41 4.89L13.8 7.04C14 7.36 14.11 7.52 14.13 7.69 14.16 7.84 14.14 7.99 14.09 8.13 14.02 8.29 13.89 8.43 13.62 8.7L8.49 13.83C8.25 14.07 8.13 14.18 7.99 14.23 7.87 14.27 7.74 14.27 7.62 14.23 7.48 14.18 7.36 14.07 7.12 13.83L1.99 8.7C1.72 8.43 1.59 8.29 1.52 8.13 1.47 7.99 1.45 7.84 1.47 7.69 1.5 7.52 1.61 7.36 1.81 7.04L3.19 4.89C3.51 4.41 3.66 4.16 3.87 3.99 4.06 3.83 4.27 3.71 4.5 3.64 4.77 3.56 5.05 3.56 5.63 3.56H9.97Z M9.56 5.25C9.49 5.06 9.22 5.06 9.15 5.25L8.67 6.57C8.64 6.65 8.57 6.71 8.49 6.74L7.18 7.23C6.99 7.3 6.99 7.57 7.18 7.64L8.49 8.13C8.57 8.16 8.64 8.22 8.67 8.3L9.15 9.62C9.22 9.81 9.49 9.81 9.56 9.62L10.05 8.3C10.08 8.22 10.14 8.16 10.22 8.13L11.54 7.64C11.73 7.57 11.73 7.3 11.54 7.23L10.22 6.74C10.14 6.71 10.08 6.65 10.05 6.57L9.56 5.25Z" fill="currentColor"></path>
+      <path id="icon-currency-stars" d="M 5.84 5.42 L 7.35 2.39 C 7.53 2.04 7.95 1.9 8.28 2.07 C 8.42 2.15 8.53 2.25 8.6 2.4 L 10.03 5.32 C 10.15 5.55 10.37 5.71 10.64 5.75 L 13.63 6.11 C 14.03 6.16 14.32 6.53 14.27 6.93 C 14.25 7.1 14.17 7.27 14.05 7.39 L 11.7 9.73 C 11.59 9.82 11.55 9.96 11.56 10.09 L 11.96 13.25 C 12.01 13.71 11.7 14.12 11.24 14.17 C 11.08 14.19 10.91 14.16 10.76 14.08 L 8.26 12.72 C 8.07 12.6 7.86 12.6 7.69 12.71 L 5.09 14.04 C 4.72 14.22 4.28 14.08 4.09 13.71 C 4.03 13.58 4 13.42 4.03 13.26 L 4.23 11.82 C 4.33 11.1 4.77 10.49 5.4 10.17 L 8.27 8.69 C 8.36 8.64 8.38 8.55 8.35 8.47 C 8.3 8.41 8.24 8.38 8.18 8.39 L 4.67 8.9 C 4.13 8.98 3.59 8.82 3.17 8.47 L 2 7.51 C 1.66 7.25 1.62 6.75 1.88 6.41 C 2.02 6.25 2.19 6.16 2.39 6.12 L 5.39 5.74 C 5.58 5.71 5.75 5.59 5.84 5.42 Z" fill="currentColor"></path>
+    </defs>
+  </svg>
+    <div id="aj_progress" class="progress-bar" style="width: 0px; transition: width 0.3s linear, box-shadow 0.2s; position: fixed; z-index: 1000; top: 0px; height: 3px;"></div>
+    
+    <div id="aj_content"><button type="button" class="pr-theme-toggle" aria-label="Switch to dark theme" aria-pressed="false" title="Dark theme"><canvas width="44" height="44"></canvas></button><div class="pr-container pr-docs-container">
+  <div class="pr-header">
+  <div class="pr-header-auth">
+  <span class="pr-header-text mobile-hide"><span class="js-header_owner_budget">Budget: <a href="https://ads.telegram.org/account/budget" class="pr-link"><span class="amount-currency currency-ton"><svg viewBox="0 0 16 18" class="currency-ton-icon"><use xlink:href="#icon-currency-ton"></use></svg>💎</span>87<span class="amount-frac">.65</span></a></span></span><span class="pr-dropdown-wrap full-height with-icons"><span class="pr-dropdown dropdown-toggle" data-toggle="dropdown"><span class="pr-dropdown-label"><span class="pr-header-account-name mobile-hide">Artem</span></span><span class="pr-auth-photo"><img src="./Telegram Ads_files/S_aIF16wCahDJSzn3RimWnrYgvMTxBBON1y6kdNFK0eSLzzjaZNULtQ67lfTUDIjUuIDFfBt7wPFim9z4kZ7VS048IUPDJUDXF9bNUTj7WXQbFGQUXBk35PklpCVR0E7d2RDINbame9LaBgaarMAsa5Okzb9AWaMi4JAkmV4XZmR1rAqEBxQG48rzXvfw5cw5-7J.jpg"></span></span><span class="dropdown-menu"><ul class="dropdown-menu">  <li class="mobile-show">
+    <div class="pr-owner-balance-wrap">
+      <div class="pr-owner-balance-photo"><img src="./Telegram Ads_files/S_aIF16wCahDJSzn3RimWnrYgvMTxBBON1y6kdNFK0eSLzzjaZNULtQ67lfTUDIjUuIDFfBt7wPFim9z4kZ7VS048IUPDJUDXF9bNUTj7WXQbFGQUXBk35PklpCVR0E7d2RDINbame9LaBgaarMAsa5Okzb9AWaMi4JAkmV4XZmR1rAqEBxQG48rzXvfw5cw5-7J.jpg"></div>
+      <div class="pr-owner-balance-content">
+        <div class="pr-owner-balance-name">Artem</div>
+        <div class="pr-owner-balance-value"><span class="js-header_owner_budget">Budget: <a href="https://ads.telegram.org/account/budget" class="pr-link"><span class="amount-currency currency-ton"><svg viewBox="0 0 16 18" class="currency-ton-icon"><use xlink:href="#icon-currency-ton"></use></svg>💎</span>87<span class="amount-frac">.65</span></a></span></div>
+      </div>
+    </div>
+  </li>
+  <li class="mobile-show divider"></li><li><a href="https://ads.telegram.org/account/edit" class="pr-dropdown-item pr-dd-icon pr-edit-icon">Edit Account Info</a></li><li><a href="https://ads.telegram.org/choose_account/new" class="pr-dropdown-item pr-dd-icon pr-org-icon">Create a new Organization</a></li><li><a href="https://ads.telegram.org/account/api" class="pr-dropdown-item pr-dd-icon pr-api-icon">Ads API</a></li><li><a href="https://ads.telegram.org/getting-started" class="pr-dropdown-item pr-dd-icon pr-help-icon">Help</a></li><li><a href="https://ads.telegram.org/#logout" class="pr-dropdown-item pr-dd-icon pr-quit-icon logout-link">Log Out</a></li><li class="divider"></li><li class="photo-selected"><a href="https://ads.telegram.org/choose_account/8fDs0hlUhIEY-jz6EhN1YM6A3qazcSH31DEgBQEzJGE" class="pr-dropdown-item"><span class="pr-dropdown-item-photo"><img src="./Telegram Ads_files/S_aIF16wCahDJSzn3RimWnrYgvMTxBBON1y6kdNFK0eSLzzjaZNULtQ67lfTUDIjUuIDFfBt7wPFim9z4kZ7VS048IUPDJUDXF9bNUTj7WXQbFGQUXBk35PklpCVR0E7d2RDINbame9LaBgaarMAsa5Okzb9AWaMi4JAkmV4XZmR1rAqEBxQG48rzXvfw5cw5-7J.jpg"></span>Artem</a></li><li><a href="https://ads.telegram.org/choose_account/28AjgaOtdfEGrYEtSPTj-SA-T0dQ1FOm4-IUepMUXE7C0PI_LKP5b-g7OtOIq8V1" class="pr-dropdown-item"><span class="pr-dropdown-item-photo"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjE2MCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI%2BPGRlZnM%2BPGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCUiIHgyPSIwJSIgeTE9IjAlIiB5Mj0iMTAwJSI%2BPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmODg1ZSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmNTE2YSIvPjwvbGluZWFyR3JhZGllbnQ%2BPC9kZWZzPjxzdHlsZT50ZXh0e2ZvbnQ6NjAwIDQ0cHggLWFwcGxlLXN5c3RlbSxCbGlua01hY1N5c3RlbUZvbnQsJ1NlZ29lIFVJJyxSb2JvdG8sSGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWYsJ0FwcGxlIENvbG9yIEVtb2ppJywnU2Vnb2UgVUkgRW1vamknLCdTZWdvZSBVSSBTeW1ib2wnOy13ZWJraXQtdXNlci1zZWxlY3Q6bm9uZTt1c2VyLXNlbGVjdDpub25lfTwvc3R5bGU%2BPHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9InVybCgjZykiLz48dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1MCIgeT0iNjYiIGZpbGw9IiNmZmYiPkRCPC90ZXh0Pjwvc3ZnPg%3D%3D"></span><span class="amount-currency currency-stars"><svg viewBox="0 0 16 18" class="currency-stars-icon"><use xlink:href="#icon-currency-stars"></use></svg>⭐️</span>Dialog Guard Bot</a></li></ul></span></span>
+</div>
+  <ol class="pr-breadcrumb"><li class="pr-logo compact"><a href="https://ads.telegram.org/"><i class="pr-icon"></i><span class="pr-logo-title">Telegram Ads</span></a></li><li class="pr-breadcrumb-item">Telegram Ads API</li></ol>
+</div>
+  <section class="pr-content"><div id="dev_page_content_wrap" class=" "><div class="dev_side_nav_wrap"><div class="dev_side_nav"><ul class="nav navbar-nav navbar-default affix-top"><li class="active"><a href="https://ads.telegram.org/docs/api#recent-changes" data-target="#recent-changes" onmouseenter="showTitleIfOverflows(this)">Recent changes</a><ul class="nav"><li class=""><a href="https://ads.telegram.org/docs/api#september-18-2026" data-target="#september-18-2026" onmouseenter="showTitleIfOverflows(this)">September 18, 2026</a></li><li class=""><a href="https://ads.telegram.org/docs/api#july-5-2025" data-target="#july-5-2025" onmouseenter="showTitleIfOverflows(this)">July 5, 2025</a></li><li class=""><a href="https://ads.telegram.org/docs/api#may-13-2025" data-target="#may-13-2025" onmouseenter="showTitleIfOverflows(this)">May 13, 2025</a></li><li class=""><a href="https://ads.telegram.org/docs/api#april-8-2025" data-target="#april-8-2025" onmouseenter="showTitleIfOverflows(this)">April 8, 2025</a></li><li class=""><a href="https://ads.telegram.org/docs/api#october-7-2024" data-target="#october-7-2024" onmouseenter="showTitleIfOverflows(this)">October 7, 2024</a></li><li class=""><a href="https://ads.telegram.org/docs/api#august-26-2024" data-target="#august-26-2024" onmouseenter="showTitleIfOverflows(this)">August 26, 2024</a></li><li class=""><a href="https://ads.telegram.org/docs/api#may-31-2024" data-target="#may-31-2024" onmouseenter="showTitleIfOverflows(this)">May 31, 2024</a></li><li class=""><a href="https://ads.telegram.org/docs/api#may-10-2024" data-target="#may-10-2024" onmouseenter="showTitleIfOverflows(this)">May 10, 2024</a></li><li class=""><a href="https://ads.telegram.org/docs/api#february-1-2024" data-target="#february-1-2024" onmouseenter="showTitleIfOverflows(this)">February 1, 2024</a></li><li class=""><a href="https://ads.telegram.org/docs/api#january-29-2024" data-target="#january-29-2024" onmouseenter="showTitleIfOverflows(this)">January 29, 2024</a></li></ul></li><li class=""><a href="https://ads.telegram.org/docs/api#making-requests" data-target="#making-requests" onmouseenter="showTitleIfOverflows(this)">Making requests</a></li><li class=""><a href="https://ads.telegram.org/docs/api#idempotent-requests" data-target="#idempotent-requests" onmouseenter="showTitleIfOverflows(this)">Idempotent Requests</a></li><li class=""><a href="https://ads.telegram.org/docs/api#authorization" data-target="#authorization" onmouseenter="showTitleIfOverflows(this)">Authorization</a></li><li class=""><a href="https://ads.telegram.org/docs/api#currencies" data-target="#currencies" onmouseenter="showTitleIfOverflows(this)">Currencies</a></li><li class=""><a href="https://ads.telegram.org/docs/api#resolving-channels-and-bots" data-target="#resolving-channels-and-bots" onmouseenter="showTitleIfOverflows(this)">Resolving channels and bots</a></li><li class=""><a href="https://ads.telegram.org/docs/api#available-methods" data-target="#available-methods" onmouseenter="showTitleIfOverflows(this)">Available methods</a><ul class="nav"><li class=""><a href="https://ads.telegram.org/docs/api#createaccount" data-target="#createaccount" onmouseenter="showTitleIfOverflows(this)">createAccount</a></li><li class=""><a href="https://ads.telegram.org/docs/api#editaccountinfo" data-target="#editaccountinfo" onmouseenter="showTitleIfOverflows(this)">editAccountInfo</a></li><li class=""><a href="https://ads.telegram.org/docs/api#getaccountinfo" data-target="#getaccountinfo" onmouseenter="showTitleIfOverflows(this)">getAccountInfo</a></li><li class=""><a href="https://ads.telegram.org/docs/api#getrelatedaccountslist" data-target="#getrelatedaccountslist" onmouseenter="showTitleIfOverflows(this)">getRelatedAccountsList</a></li><li class=""><a href="https://ads.telegram.org/docs/api#increaseaccountbudget" data-target="#increaseaccountbudget" onmouseenter="showTitleIfOverflows(this)">increaseAccountBudget</a></li><li class=""><a href="https://ads.telegram.org/docs/api#decreaseaccountbudget" data-target="#decreaseaccountbudget" onmouseenter="showTitleIfOverflows(this)">decreaseAccountBudget</a></li><li class=""><a href="https://ads.telegram.org/docs/api#gettransactionstatus" data-target="#gettransactionstatus" onmouseenter="showTitleIfOverflows(this)">getTransactionStatus</a></li><li><a href="https://ads.telegram.org/docs/api#getcurrentaccount" data-target="#getcurrentaccount" onmouseenter="showTitleIfOverflows(this)">getCurrentAccount</a></li><li class=""><a href="https://ads.telegram.org/docs/api#getaccountsbyid" data-target="#getaccountsbyid" onmouseenter="showTitleIfOverflows(this)">getAccountsById</a></li><li class=""><a href="https://ads.telegram.org/docs/api#getaccounttransactionslist" data-target="#getaccounttransactionslist" onmouseenter="showTitleIfOverflows(this)">getAccountTransactionsList</a></li><li class=""><a href="https://ads.telegram.org/docs/api#getaccountstats" data-target="#getaccountstats" onmouseenter="showTitleIfOverflows(this)">getAccountStats</a></li><li class=""><a href="https://ads.telegram.org/docs/api#getaccountreport" data-target="#getaccountreport" onmouseenter="showTitleIfOverflows(this)">getAccountReport</a></li><li class=""><a href="https://ads.telegram.org/docs/api#uploadadphoto" data-target="#uploadadphoto" onmouseenter="showTitleIfOverflows(this)">uploadAdPhoto</a></li><li class=""><a href="https://ads.telegram.org/docs/api#uploadadvideo" data-target="#uploadadvideo" onmouseenter="showTitleIfOverflows(this)">uploadAdVideo</a></li><li class=""><a href="https://ads.telegram.org/docs/api#uploadwebsitephoto" data-target="#uploadwebsitephoto" onmouseenter="showTitleIfOverflows(this)">uploadWebsitePhoto</a></li><li class=""><a href="https://ads.telegram.org/docs/api#createad" data-target="#createad" onmouseenter="showTitleIfOverflows(this)">createAd</a></li><li class=""><a href="https://ads.telegram.org/docs/api#editad" data-target="#editad" onmouseenter="showTitleIfOverflows(this)">editAd</a></li><li class=""><a href="https://ads.telegram.org/docs/api#editadstatus" data-target="#editadstatus" onmouseenter="showTitleIfOverflows(this)">editAdStatus</a></li><li class=""><a href="https://ads.telegram.org/docs/api#increaseadbudget" data-target="#increaseadbudget" onmouseenter="showTitleIfOverflows(this)">increaseAdBudget</a></li><li class=""><a href="https://ads.telegram.org/docs/api#decreaseadbudget" data-target="#decreaseadbudget" onmouseenter="showTitleIfOverflows(this)">decreaseAdBudget</a></li><li class=""><a href="https://ads.telegram.org/docs/api#submitadforreview" data-target="#submitadforreview" onmouseenter="showTitleIfOverflows(this)">submitAdForReview</a></li><li class=""><a href="https://ads.telegram.org/docs/api#deletead" data-target="#deletead" onmouseenter="showTitleIfOverflows(this)">deleteAd</a></li><li class=""><a href="https://ads.telegram.org/docs/api#getadsbyid" data-target="#getadsbyid" onmouseenter="showTitleIfOverflows(this)">getAdsById</a></li><li class=""><a href="https://ads.telegram.org/docs/api#getadslist" data-target="#getadslist" onmouseenter="showTitleIfOverflows(this)">getAdsList</a></li><li class=""><a href="https://ads.telegram.org/docs/api#getadtransactionslist" data-target="#getadtransactionslist" onmouseenter="showTitleIfOverflows(this)">getAdTransactionsList</a></li><li class=""><a href="https://ads.telegram.org/docs/api#getadstats" data-target="#getadstats" onmouseenter="showTitleIfOverflows(this)">getAdStats</a></li><li class=""><a href="https://ads.telegram.org/docs/api#createaudience" data-target="#createaudience" onmouseenter="showTitleIfOverflows(this)">createAudience</a></li><li class=""><a href="https://ads.telegram.org/docs/api#editaudience" data-target="#editaudience" onmouseenter="showTitleIfOverflows(this)">editAudience</a></li><li class=""><a href="https://ads.telegram.org/docs/api#deleteaudience" data-target="#deleteaudience" onmouseenter="showTitleIfOverflows(this)">deleteAudience</a></li><li class=""><a href="https://ads.telegram.org/docs/api#getaudiencesbyid" data-target="#getaudiencesbyid" onmouseenter="showTitleIfOverflows(this)">getAudiencesById</a></li><li class=""><a href="https://ads.telegram.org/docs/api#getaudienceslist" data-target="#getaudienceslist" onmouseenter="showTitleIfOverflows(this)">getAudiencesList</a></li><li class=""><a href="https://ads.telegram.org/docs/api#createpixel" data-target="#createpixel" onmouseenter="showTitleIfOverflows(this)">createPixel</a></li><li class=""><a href="https://ads.telegram.org/docs/api#getpixel" data-target="#getpixel" onmouseenter="showTitleIfOverflows(this)">getPixel</a></li><li class=""><a href="https://ads.telegram.org/docs/api#createpixelevent" data-target="#createpixelevent" onmouseenter="showTitleIfOverflows(this)">createPixelEvent</a></li><li class=""><a href="https://ads.telegram.org/docs/api#editpixelevent" data-target="#editpixelevent" onmouseenter="showTitleIfOverflows(this)">editPixelEvent</a></li><li class=""><a href="https://ads.telegram.org/docs/api#deletepixelevent" data-target="#deletepixelevent" onmouseenter="showTitleIfOverflows(this)">deletePixelEvent</a></li><li class=""><a href="https://ads.telegram.org/docs/api#getpixeleventsbyid" data-target="#getpixeleventsbyid" onmouseenter="showTitleIfOverflows(this)">getPixelEventsById</a></li><li class=""><a href="https://ads.telegram.org/docs/api#getpixeleventslist" data-target="#getpixeleventslist" onmouseenter="showTitleIfOverflows(this)">getPixelEventsList</a></li><li><a href="https://ads.telegram.org/docs/api#gettargetlanguageslist" data-target="#gettargetlanguageslist" onmouseenter="showTitleIfOverflows(this)">getTargetLanguagesList</a></li><li class=""><a href="https://ads.telegram.org/docs/api#gettargettopicslist" data-target="#gettargettopicslist" onmouseenter="showTitleIfOverflows(this)">getTargetTopicsList</a></li><li><a href="https://ads.telegram.org/docs/api#gettargetcountrieslist" data-target="#gettargetcountrieslist" onmouseenter="showTitleIfOverflows(this)">getTargetCountriesList</a></li><li class=""><a href="https://ads.telegram.org/docs/api#gettargetlocationsbyid" data-target="#gettargetlocationsbyid" onmouseenter="showTitleIfOverflows(this)">getTargetLocationsById</a></li><li class=""><a href="https://ads.telegram.org/docs/api#gettargetlocationslist" data-target="#gettargetlocationslist" onmouseenter="showTitleIfOverflows(this)">getTargetLocationsList</a></li><li><a href="https://ads.telegram.org/docs/api#gettargetchannel" data-target="#gettargetchannel" onmouseenter="showTitleIfOverflows(this)">getTargetChannel</a></li><li class=""><a href="https://ads.telegram.org/docs/api#gettargetbot" data-target="#gettargetbot" onmouseenter="showTitleIfOverflows(this)">getTargetBot</a></li></ul></li><li class=""><a href="https://ads.telegram.org/docs/api#available-types" data-target="#available-types" onmouseenter="showTitleIfOverflows(this)">Available types</a><ul class="nav"><li class=""><a href="https://ads.telegram.org/docs/api#account" data-target="#account" onmouseenter="showTitleIfOverflows(this)">Account</a></li><li class=""><a href="https://ads.telegram.org/docs/api#accountinfo" data-target="#accountinfo" onmouseenter="showTitleIfOverflows(this)">AccountInfo</a></li><li class=""><a href="https://ads.telegram.org/docs/api#relatedaccountslist" data-target="#relatedaccountslist" onmouseenter="showTitleIfOverflows(this)">RelatedAccountsList</a></li><li class=""><a href="https://ads.telegram.org/docs/api#transactionstatus" data-target="#transactionstatus" onmouseenter="showTitleIfOverflows(this)">TransactionStatus</a></li><li class=""><a href="https://ads.telegram.org/docs/api#accounttransactionslist" data-target="#accounttransactionslist" onmouseenter="showTitleIfOverflows(this)">AccountTransactionsList</a></li><li class=""><a href="https://ads.telegram.org/docs/api#accounttransaction" data-target="#accounttransaction" onmouseenter="showTitleIfOverflows(this)">AccountTransaction</a></li><li class=""><a href="https://ads.telegram.org/docs/api#accounttransactionpeer" data-target="#accounttransactionpeer" onmouseenter="showTitleIfOverflows(this)">AccountTransactionPeer</a></li><li class=""><a href="https://ads.telegram.org/docs/api#accounttransactionpeerexternal" data-target="#accounttransactionpeerexternal" onmouseenter="showTitleIfOverflows(this)">AccountTransactionPeerExternal</a></li><li><a href="https://ads.telegram.org/docs/api#accounttransactionpeermainaccount" data-target="#accounttransactionpeermainaccount" onmouseenter="showTitleIfOverflows(this)">AccountTransactionPeerMainAccount</a></li><li class=""><a href="https://ads.telegram.org/docs/api#accounttransactionpeerrelatedaccount" data-target="#accounttransactionpeerrelatedaccount" onmouseenter="showTitleIfOverflows(this)">AccountTransactionPeerRelatedAccount</a></li><li class=""><a href="https://ads.telegram.org/docs/api#accounttransactionpeerad" data-target="#accounttransactionpeerad" onmouseenter="showTitleIfOverflows(this)">AccountTransactionPeerAd</a></li><li class=""><a href="https://ads.telegram.org/docs/api#accountreportitem" data-target="#accountreportitem" onmouseenter="showTitleIfOverflows(this)">AccountReportItem</a></li><li class=""><a href="https://ads.telegram.org/docs/api#inputfile" data-target="#inputfile" onmouseenter="showTitleIfOverflows(this)">InputFile</a></li><li class=""><a href="https://ads.telegram.org/docs/api#adphoto" data-target="#adphoto" onmouseenter="showTitleIfOverflows(this)">AdPhoto</a></li><li class=""><a href="https://ads.telegram.org/docs/api#advideo" data-target="#advideo" onmouseenter="showTitleIfOverflows(this)">AdVideo</a></li><li class=""><a href="https://ads.telegram.org/docs/api#websitephoto" data-target="#websitephoto" onmouseenter="showTitleIfOverflows(this)">WebsitePhoto</a></li><li class=""><a href="https://ads.telegram.org/docs/api#ad" data-target="#ad" onmouseenter="showTitleIfOverflows(this)">Ad</a></li><li class=""><a href="https://ads.telegram.org/docs/api#inputadschedule" data-target="#inputadschedule" onmouseenter="showTitleIfOverflows(this)">InputAdSchedule</a></li><li class=""><a href="https://ads.telegram.org/docs/api#adschedule" data-target="#adschedule" onmouseenter="showTitleIfOverflows(this)">AdSchedule</a></li><li class=""><a href="https://ads.telegram.org/docs/api#declinereason" data-target="#declinereason" onmouseenter="showTitleIfOverflows(this)">DeclineReason</a></li><li class=""><a href="https://ads.telegram.org/docs/api#inputadtarget" data-target="#inputadtarget" onmouseenter="showTitleIfOverflows(this)">InputAdTarget</a></li><li class=""><a href="https://ads.telegram.org/docs/api#inputadtargetchannels" data-target="#inputadtargetchannels" onmouseenter="showTitleIfOverflows(this)">InputAdTargetChannels</a></li><li class=""><a href="https://ads.telegram.org/docs/api#inputadtargetusers" data-target="#inputadtargetusers" onmouseenter="showTitleIfOverflows(this)">InputAdTargetUsers</a></li><li class=""><a href="https://ads.telegram.org/docs/api#inputadtargetbots" data-target="#inputadtargetbots" onmouseenter="showTitleIfOverflows(this)">InputAdTargetBots</a></li><li class=""><a href="https://ads.telegram.org/docs/api#inputadtargetsearch" data-target="#inputadtargetsearch" onmouseenter="showTitleIfOverflows(this)">InputAdTargetSearch</a></li><li class=""><a href="https://ads.telegram.org/docs/api#adtarget" data-target="#adtarget" onmouseenter="showTitleIfOverflows(this)">AdTarget</a></li><li class=""><a href="https://ads.telegram.org/docs/api#adtargetchannels" data-target="#adtargetchannels" onmouseenter="showTitleIfOverflows(this)">AdTargetChannels</a></li><li class=""><a href="https://ads.telegram.org/docs/api#adtargetusers" data-target="#adtargetusers" onmouseenter="showTitleIfOverflows(this)">AdTargetUsers</a></li><li class=""><a href="https://ads.telegram.org/docs/api#adtargetbots" data-target="#adtargetbots" onmouseenter="showTitleIfOverflows(this)">AdTargetBots</a></li><li class=""><a href="https://ads.telegram.org/docs/api#adtargetsearch" data-target="#adtargetsearch" onmouseenter="showTitleIfOverflows(this)">AdTargetSearch</a></li><li class=""><a href="https://ads.telegram.org/docs/api#adlist" data-target="#adlist" onmouseenter="showTitleIfOverflows(this)">AdList</a></li><li class=""><a href="https://ads.telegram.org/docs/api#adtransactionslist" data-target="#adtransactionslist" onmouseenter="showTitleIfOverflows(this)">AdTransactionsList</a></li><li class=""><a href="https://ads.telegram.org/docs/api#adtransaction" data-target="#adtransaction" onmouseenter="showTitleIfOverflows(this)">AdTransaction</a></li><li class=""><a href="https://ads.telegram.org/docs/api#adtransactionpeer" data-target="#adtransactionpeer" onmouseenter="showTitleIfOverflows(this)">AdTransactionPeer</a></li><li class=""><a href="https://ads.telegram.org/docs/api#adtransactionpeeraccount" data-target="#adtransactionpeeraccount" onmouseenter="showTitleIfOverflows(this)">AdTransactionPeerAccount</a></li><li class=""><a href="https://ads.telegram.org/docs/api#adtransactionpeerviews" data-target="#adtransactionpeerviews" onmouseenter="showTitleIfOverflows(this)">AdTransactionPeerViews</a></li><li class=""><a href="https://ads.telegram.org/docs/api#adstatitem" data-target="#adstatitem" onmouseenter="showTitleIfOverflows(this)">AdStatItem</a></li><li class=""><a href="https://ads.telegram.org/docs/api#audience" data-target="#audience" onmouseenter="showTitleIfOverflows(this)">Audience</a></li><li class=""><a href="https://ads.telegram.org/docs/api#audienceslist" data-target="#audienceslist" onmouseenter="showTitleIfOverflows(this)">AudiencesList</a></li><li class=""><a href="https://ads.telegram.org/docs/api#pixel" data-target="#pixel" onmouseenter="showTitleIfOverflows(this)">Pixel</a></li><li class=""><a href="https://ads.telegram.org/docs/api#pixelevent" data-target="#pixelevent" onmouseenter="showTitleIfOverflows(this)">PixelEvent</a></li><li><a href="https://ads.telegram.org/docs/api#pixeleventslist" data-target="#pixeleventslist" onmouseenter="showTitleIfOverflows(this)">PixelEventsList</a></li><li class=""><a href="https://ads.telegram.org/docs/api#targetlanguage" data-target="#targetlanguage" onmouseenter="showTitleIfOverflows(this)">TargetLanguage</a></li><li class=""><a href="https://ads.telegram.org/docs/api#targettopic" data-target="#targettopic" onmouseenter="showTitleIfOverflows(this)">TargetTopic</a></li><li class=""><a href="https://ads.telegram.org/docs/api#targetcountry" data-target="#targetcountry" onmouseenter="showTitleIfOverflows(this)">TargetCountry</a></li><li><a href="https://ads.telegram.org/docs/api#targetlocation" data-target="#targetlocation" onmouseenter="showTitleIfOverflows(this)">TargetLocation</a></li><li><a href="https://ads.telegram.org/docs/api#targetlocationlist" data-target="#targetlocationlist" onmouseenter="showTitleIfOverflows(this)">TargetLocationList</a></li><li><a href="https://ads.telegram.org/docs/api#targetchannel" data-target="#targetchannel" onmouseenter="showTitleIfOverflows(this)">TargetChannel</a></li><li class=""><a href="https://ads.telegram.org/docs/api#targetbot" data-target="#targetbot" onmouseenter="showTitleIfOverflows(this)">TargetBot</a></li></ul></li></ul></div></div>
+  <div class="dev_page_bread_crumbs"></div>
+  <h1 id="dev_page_title">Telegram Ads API</h1>
+  
+  <div id="dev_page_content"><!-- scroll_nav -->
+
+<h3><a class="anchor" name="recent-changes" href="https://ads.telegram.org/docs/api#recent-changes" id="recent-changes"><i class="anchor-icon"></i></a>Recent changes</h3>
+<h4><a class="anchor" name="september-18-2026" href="https://ads.telegram.org/docs/api#september-18-2026" id="september-18-2026"><i class="anchor-icon"></i></a>September 18, 2026</h4>
+<ul>
+<li>Added the field <em>currency</em> to the classes <a href="https://ads.telegram.org/docs/api#account">Account</a>, <a href="https://ads.telegram.org/docs/api#ad">Ad</a>, <a href="https://ads.telegram.org/docs/api#transactionstatus">TransactionStatus</a>, <a href="https://ads.telegram.org/docs/api#accounttransaction">AccountTransaction</a>, <a href="https://ads.telegram.org/docs/api#adtransaction">AdTransaction</a>, <a href="https://ads.telegram.org/docs/api#adstatitem">AdStatItem</a> and <a href="https://ads.telegram.org/docs/api#accountreportitem">AccountReportItem</a>.</li>
+<li>Added the method <a href="https://ads.telegram.org/docs/api#submitadforreview">submitAdForReview</a> for submitting an advertisement for review.</li>
+<li>Added the value “ready_for_review” to the field <em>status</em> of the class <a href="https://ads.telegram.org/docs/api#ad">Ad</a>.</li>
+<li>Numeric identifiers of channels and bots can now only be used if they were previously resolved by the same account via their username. See <a href="https://ads.telegram.org/docs/api#resolving-channels-and-bots">Resolving channels and bots</a>.</li>
+</ul>
+<h4><a class="anchor" name="july-5-2025" href="https://ads.telegram.org/docs/api#july-5-2025" id="july-5-2025"><i class="anchor-icon"></i></a>July 5, 2025</h4>
+<ul>
+<li>Added the parameter <em>placement</em> to the method <a href="https://ads.telegram.org/docs/api#createad">createAd</a>.  </li>
+<li>Added the field <em>placement</em> to the class <a href="https://ads.telegram.org/docs/api#ad">Ad</a>.</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> For backward compatibility, the parameter <em>placement</em> is currently optional. If not passed, its value will be automatically inferred based on the <em>target.type</em>. However, it is recommended to always explicitly specify <em>placement</em>, as this behavior may change in the future.</p>
+</blockquote>
+<h4><a class="anchor" name="may-13-2025" href="https://ads.telegram.org/docs/api#may-13-2025" id="may-13-2025"><i class="anchor-icon"></i></a>May 13, 2025</h4>
+<ul>
+<li>Added new objects <a href="https://ads.telegram.org/docs/api#inputadtargetbots">InputAdTargetBots</a> and <a href="https://ads.telegram.org/docs/api#adtargetbots">AdTargetBots</a>.</li>
+<li>Added the methods <a href="https://ads.telegram.org/docs/api#createpixel">createPixel</a>, <a href="https://ads.telegram.org/docs/api#getpixel">getPixel</a>, <a href="https://ads.telegram.org/docs/api#createpixelevent">createPixelEvent</a>, <a href="https://ads.telegram.org/docs/api#editpixelevent">editPixelEvent</a>, <a href="https://ads.telegram.org/docs/api#deletepixelevent">deletePixelEvent</a>, <a href="https://ads.telegram.org/docs/api#getpixeleventsbyid">getPixelEventsById</a>, <a href="https://ads.telegram.org/docs/api#getpixeleventslist">getPixelEventsList</a> and <a href="https://ads.telegram.org/docs/api#gettargetbot">getTargetBot</a>.</li>
+<li>Added the parameter <em>conversion_event_id</em> to the methods <a href="https://ads.telegram.org/docs/api#createad">createAd</a> and <a href="https://ads.telegram.org/docs/api#editad">editAd</a>.</li>
+<li>Added the fields <em>conversion_event_id</em> and <em>action_type</em> to the class <a href="https://ads.telegram.org/docs/api#ad">Ad</a>.</li>
+<li>Renamed the field <em>joins</em> to <em>actions</em> in the classes <a href="https://ads.telegram.org/docs/api#accountreportitem">AccountReportItem</a>, <a href="https://ads.telegram.org/docs/api#adstatitem">AdStatItem</a> and <a href="https://ads.telegram.org/docs/api#ad">Ad</a>. The old name will still work for backward compatibility.</li>
+</ul>
+<h4><a class="anchor" name="april-8-2025" href="https://ads.telegram.org/docs/api#april-8-2025" id="april-8-2025"><i class="anchor-icon"></i></a>April 8, 2025</h4>
+<ul>
+<li>Added new objects <a href="https://ads.telegram.org/docs/api#inputadtargetsearch">InputAdTargetSearch</a> and <a href="https://ads.telegram.org/docs/api#adtargetsearch">AdTargetSearch</a>.</li>
+</ul>
+<h4><a class="anchor" name="october-7-2024" href="https://ads.telegram.org/docs/api#october-7-2024" id="october-7-2024"><i class="anchor-icon"></i></a>October 7, 2024</h4>
+<ul>
+<li>Added the field <em>opens</em> to the classes <a href="https://ads.telegram.org/docs/api#accountreportitem">AccountReportItem</a>, <a href="https://ads.telegram.org/docs/api#ad">Ad</a> and <a href="https://ads.telegram.org/docs/api#adstatitem">AdStatItem</a>.</li>
+</ul>
+<h4><a class="anchor" name="august-26-2024" href="https://ads.telegram.org/docs/api#august-26-2024" id="august-26-2024"><i class="anchor-icon"></i></a>August 26, 2024</h4>
+<ul>
+<li>Added the methods <a href="https://ads.telegram.org/docs/api#uploadadphoto">uploadAdPhoto</a> and <a href="https://ads.telegram.org/docs/api#uploadadvideo">uploadAdVideo</a>.</li>
+<li>Added the parameters <em>photo_id</em> and <em>video_id</em> to the methods <a href="https://ads.telegram.org/docs/api#createad">createAd</a> and <a href="https://ads.telegram.org/docs/api#editad">editAd</a>.</li>
+<li>Added the fields <em>photo</em>, <em>video</em> to the class <a href="https://ads.telegram.org/docs/api#ad">Ad</a>.</li>
+</ul>
+<h4><a class="anchor" name="may-31-2024" href="https://ads.telegram.org/docs/api#may-31-2024" id="may-31-2024"><i class="anchor-icon"></i></a>May 31, 2024</h4>
+<ul>
+<li>Added the methods <a href="https://ads.telegram.org/docs/api#getaccounttransactionslist">getAccountTransactionsList</a> and <a href="https://ads.telegram.org/docs/api#getadtransactionslist">getAdTransactionsList</a>.</li>
+</ul>
+<h4><a class="anchor" name="may-10-2024" href="https://ads.telegram.org/docs/api#may-10-2024" id="may-10-2024"><i class="anchor-icon"></i></a>May 10, 2024</h4>
+<ul>
+<li>Added the method <a href="https://ads.telegram.org/docs/api#uploadwebsitephoto">uploadWebsitePhoto</a>.</li>
+<li>Added the parameter <em>website_photo_id</em> to the methods <a href="https://ads.telegram.org/docs/api#createad">createAd</a> and <a href="https://ads.telegram.org/docs/api#editad">editAd</a>.</li>
+<li>Added the fields <em>website_photo_id</em>, <em>website_photo_url</em> to the class <a href="https://ads.telegram.org/docs/api#ad">Ad</a>.</li>
+</ul>
+<h4><a class="anchor" name="february-1-2024" href="https://ads.telegram.org/docs/api#february-1-2024" id="february-1-2024"><i class="anchor-icon"></i></a>February 1, 2024</h4>
+<ul>
+<li>Added the method <a href="https://ads.telegram.org/docs/api#decreaseadbudget">decreaseAdBudget</a>.</li>
+</ul>
+<h4><a class="anchor" name="january-29-2024" href="https://ads.telegram.org/docs/api#january-29-2024" id="january-29-2024"><i class="anchor-icon"></i></a>January 29, 2024</h4>
+<ul>
+<li>Added the parameters <em>daily_budget_limit</em>, <em>is_paused</em>, <em>activate_date</em>, <em>deactivate_date</em> and <em>schedule</em> to the methods <a href="https://ads.telegram.org/docs/api#createad">createAd</a> and <a href="https://ads.telegram.org/docs/api#editad">editAd</a>.</li>
+<li>Added the fields <em>daily_spent_budget</em>, <em>daily_budget_limit</em>, <em>is_paused</em>, <em>activate_date</em>, <em>deactivate_date</em> and <em>schedule</em> to the class <a href="https://ads.telegram.org/docs/api#ad">Ad</a>.</li>
+</ul>
+<h3><a class="anchor" name="making-requests" href="https://ads.telegram.org/docs/api#making-requests" id="making-requests"><i class="anchor-icon"></i></a>Making requests</h3>
+<p>All queries to the Telegram Ads API must be served over HTTPS and need to be presented in this form: <code>https://promoteapi.telegram.org/METHOD_NAME</code>. Like this for example:</p>
+<pre><code>https://promoteapi.telegram.org/getCurrentAccount</code></pre>
+<p>We support <strong>GET</strong> and <strong>POST</strong> HTTP methods. We support three ways of passing parameters in Ads API requests:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Query_string">URL query string</a></li>
+<li>application/x-www-form-urlencoded</li>
+<li>application/json (except for uploading files)</li>
+<li>multipart/form-data (use to upload files)</li>
+</ul>
+<p>The response contains a JSON object, which always has a Boolean field <code>ok</code>. If <code>ok</code> equals <em>true</em>, the request was successful, and the result of the query can be found in the <code>result</code> field. In case of an unsuccessful request, <code>ok</code> equals <em>false</em>, and the error is explained in the <code>error</code> field (e.g. AD_TITLE_REQUIRED).</p>
+<ul>
+<li>All methods in the Ads API are case-insensitive.</li>
+<li>All queries must be made using UTF-8.</li>
+</ul>
+<h3><a class="anchor" name="idempotent-requests" href="https://ads.telegram.org/docs/api#idempotent-requests" id="idempotent-requests"><i class="anchor-icon"></i></a>Idempotent Requests</h3>
+<p>The Telegram Ads API supports idempotency for safely retrying requests without accidentally performing the same operation twice. To perform an idempotent request, provide an idempotency key in one of two ways:</p>
+<ul>
+<li>in the HTTP header <code>Idempotency-Key: &lt;key&gt;</code></li>
+<li>as the <code>idempotency_key</code> parameter.</li>
+</ul>
+<p>An idempotency key is a client-generated unique value that lets the server identify repeat requests. While you can choose how to create these keys, we recommend using a v4 UUIDs or other high-entropy strings to avoid collisions. Idempotency keys can be up to 128 characters long.</p>
+<p>For idempotent requests, the API saves the body of the response of the initial request and, when the same idempotency key is used in another request, it replays the saved response. </p>
+<blockquote>
+<p>Keys older than 24 hours will be deleted. You can safely retry requests that include an idempotency key as long as the second request occurs within 24 hours from the initial request.</p>
+</blockquote>
+<p>A response is only saved if an API method started executing. If incoming parameters failed validation, or the request conflicted with another that was executing concurrently, no idempotent result is saved. It is safe to retry these requests. </p>
+<p>When using an idempotency key, the request parameters must match the initial request. Otherwise, an <code>IDEMPOTENT_PARAM_MISMATCH</code> error will be returned. If the initial request is still being processed concurrently and has not yet responded, an <code>IDEMPOTENT_REQUEST_IN_PROGRESS</code> error will be returned.</p>
+<p>When the response is replayed, the HTTP header <code>Idempotent-Replayed: true</code> will be added to the response.</p>
+<h3><a class="anchor" name="authorization" href="https://ads.telegram.org/docs/api#authorization" id="authorization"><i class="anchor-icon"></i></a>Authorization</h3>
+<p>Before invoking API methods, it's necessary to obtain an access token in the Telegram Ads account settings. After this, any requests to the API can be executed. </p>
+<p>The token must be passed in every request in one of two ways:</p>
+<ul>
+<li>in the HTTP header: <code>Authorization: Bearer &lt;token&gt;</code></li>
+<li>as the <code>access_token</code> parameter.</li>
+</ul>
+<h3><a class="anchor" name="currencies" href="https://ads.telegram.org/docs/api#currencies" id="currencies"><i class="anchor-icon"></i></a>Currencies</h3>
+<p>Each account is denominated in one of the supported currencies: Euros (“EUR”), Grams (“TON”) or Telegram Stars (“XTR”). The currency is assigned when the account is created and cannot be changed.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Currency</th>
+<th>Code</th>
+<th><em>cpm</em> &amp; budget precision</th>
+<th><em>amount</em> precision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Euros</td>
+<td>EUR</td>
+<td>2</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Grams</td>
+<td>TON</td>
+<td>2</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Telegram Stars</td>
+<td>XTR</td>
+<td>0</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>All monetary fields in the API – budgets, prices and transaction amounts – are expressed in the account's currency. The currency of the current account is returned in the <em>currency</em> field of the <a href="https://ads.telegram.org/docs/api#account">Account</a> object and of all objects containing monetary values.</p>
+<h3><a class="anchor" name="resolving-channels-and-bots" href="https://ads.telegram.org/docs/api#resolving-channels-and-bots" id="resolving-channels-and-bots"><i class="anchor-icon"></i></a>Resolving channels and bots</h3>
+<p>Channels and bots can be specified either by their numeric identifier or by their username (in the format <code>@channelusername</code>) in the <em>channel_id</em> / <em>bot_id</em> parameters of the <a href="https://ads.telegram.org/docs/api#gettargetchannel">getTargetChannel</a> and <a href="https://ads.telegram.org/docs/api#gettargetbot">getTargetBot</a> methods, as well as in the <em>channel_ids</em> and <em>bot_ids</em> target fields of the <a href="https://ads.telegram.org/docs/api#createad">createAd</a> and <a href="https://ads.telegram.org/docs/api#editad">editAd</a> methods.</p>
+<p>Numeric identifiers of channels and bots can only be used if they were previously resolved by the same account via their username. Otherwise, a <code>CHANNEL_ID_UNKNOWN</code> or <code>BOT_ID_UNKNOWN</code> error is returned. Because of this, specifying channels and bots by username is the recommended default.</p>
+<h3><a class="anchor" name="available-methods" href="https://ads.telegram.org/docs/api#available-methods" id="available-methods"><i class="anchor-icon"></i></a>Available methods</h3>
+<blockquote>
+<p>We support <strong>GET</strong> and <strong>POST</strong> HTTP methods. Use either <a href="https://en.wikipedia.org/wiki/Query_string">URL query string</a> or <em>application/json</em> or <em>application/x-www-form-urlencoded</em> for passing parameters in Telegram Ads API requests.<br>On successful call, a JSON-object containing the result will be returned.</p>
+</blockquote>
+<h4><a class="anchor" name="createaccount" href="https://ads.telegram.org/docs/api#createaccount" id="createaccount"><i class="anchor-icon"></i></a>createAccount</h4>
+<p>Use this method to create a new account. This method can only be called from the main advertiser's account. An account created in this way can only be managed through the main account from which it was created. On success, returns an <a href="https://ads.telegram.org/docs/api#accountinfo">AccountInfo</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Yes</td>
+<td>Title of the account is being created, 1-128 characters.</td>
+</tr>
+<tr>
+<td>full_name</td>
+<td>String</td>
+<td>Yes</td>
+<td>Full company name for which the account is being created, 1-256 characters.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>Yes</td>
+<td>Company email for which the account is being created, 1-64 characters.</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td>String</td>
+<td>Yes</td>
+<td>Phone number of the company for which the account is being created.</td>
+</tr>
+<tr>
+<td>country</td>
+<td>String</td>
+<td>Yes</td>
+<td>Company's country for which the account is being created, 1-128 characters.</td>
+</tr>
+<tr>
+<td>city</td>
+<td>String</td>
+<td>Yes</td>
+<td>Company's city for which the account is being created, 1-128 characters.</td>
+</tr>
+<tr>
+<td>legal_name</td>
+<td>String</td>
+<td>Optional</td>
+<td>Advertiser's legal name for which the account is being created, 0-256 characters. Additional information that can be viewed by users.</td>
+</tr>
+<tr>
+<td>idempotency_key</td>
+<td>String</td>
+<td>Optional</td>
+<td>A unique key to perform an idempotent request, 0-128 characters. You can also pass this key in the HTTP header <code>Idempotency-Key: &lt;key&gt;</code> instead.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="editaccountinfo" href="https://ads.telegram.org/docs/api#editaccountinfo" id="editaccountinfo"><i class="anchor-icon"></i></a>editAccountInfo</h4>
+<p>Use this method to edit the info of the account. On success, returns an <a href="https://ads.telegram.org/docs/api#accountinfo">AccountInfo</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to edit info. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Optional</td>
+<td>New title of the account, 1-128 characters.</td>
+</tr>
+<tr>
+<td>full_name</td>
+<td>String</td>
+<td>Optional</td>
+<td>New full company name of the account, 1-256 characters.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>Optional</td>
+<td>New company email of the account, 1-64 characters.</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td>String</td>
+<td>Optional</td>
+<td>New phone number of the company of the account.</td>
+</tr>
+<tr>
+<td>country</td>
+<td>String</td>
+<td>Optional</td>
+<td>New company's country of the account, 1-128 characters.</td>
+</tr>
+<tr>
+<td>city</td>
+<td>String</td>
+<td>Optional</td>
+<td>New company's city of the account, 1-128 characters.</td>
+</tr>
+<tr>
+<td>legal_name</td>
+<td>String</td>
+<td>Optional</td>
+<td>New advertiser's legal name of the account, 0-256 characters.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="getaccountinfo" href="https://ads.telegram.org/docs/api#getaccountinfo" id="getaccountinfo"><i class="anchor-icon"></i></a>getAccountInfo</h4>
+<p>Use this method to get the info of the account. On success, returns an <a href="https://ads.telegram.org/docs/api#accountinfo">AccountInfo</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to get info. If not specified, the current account will be used.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="getrelatedaccountslist" href="https://ads.telegram.org/docs/api#getrelatedaccountslist" id="getrelatedaccountslist"><i class="anchor-icon"></i></a>getRelatedAccountsList</h4>
+<p>Use this method to get a list of related accounts. Budgets of related accounts can be replenished using the budget of the main account. On success, returns a <a href="https://ads.telegram.org/docs/api#relatedaccountslist">RelatedAccountsList</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Offset of the related accounts list to be returned.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Limits the number of the related accounts to be retrieved. By default, all related accounts are returned.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="increaseaccountbudget" href="https://ads.telegram.org/docs/api#increaseaccountbudget" id="increaseaccountbudget"><i class="anchor-icon"></i></a>increaseAccountBudget</h4>
+<p>Use this method to increase the budget of a related account. The current account budget must have enough funds. On success, returns a <a href="https://ads.telegram.org/docs/api#transactionstatus">TransactionStatus</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unique identifier of the account to increase budget.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Float</td>
+<td>Yes</td>
+<td>Amount in the account's currency that will be added to the account budget from the current account budget. The value will be rounded to the amount precision of the account's currency (see <a href="https://ads.telegram.org/docs/api#currencies">Currencies</a>).</td>
+</tr>
+<tr>
+<td>idempotency_key</td>
+<td>String</td>
+<td>Optional</td>
+<td>A unique key to perform an idempotent request, 0-128 characters. You can also pass this key in the HTTP header <code>Idempotency-Key: &lt;key&gt;</code> instead.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="decreaseaccountbudget" href="https://ads.telegram.org/docs/api#decreaseaccountbudget" id="decreaseaccountbudget"><i class="anchor-icon"></i></a>decreaseAccountBudget</h4>
+<p>Use this method to decrease the budget of a related account. The target account budget must have enough funds. On success, returns a <a href="https://ads.telegram.org/docs/api#transactionstatus">TransactionStatus</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unique identifier of the account to decrease budget.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Float</td>
+<td>Yes</td>
+<td>Amount in the account's currency that will be withdrawn from the account budget to the current account budget. The value will be rounded to the amount precision of the account's currency (see <a href="https://ads.telegram.org/docs/api#currencies">Currencies</a>).</td>
+</tr>
+<tr>
+<td>idempotency_key</td>
+<td>String</td>
+<td>Optional</td>
+<td>A unique key to perform an idempotent request, 0-128 characters. You can also pass this key in the HTTP header <code>Idempotency-Key: &lt;key&gt;</code> instead.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="gettransactionstatus" href="https://ads.telegram.org/docs/api#gettransactionstatus" id="gettransactionstatus"><i class="anchor-icon"></i></a>getTransactionStatus</h4>
+<p>Use this method to get the status of transaction. On success, returns a <a href="https://ads.telegram.org/docs/api#transactionstatus">TransactionStatus</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transaction_id</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unique identifier of the transaction to get status.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="getcurrentaccount" href="https://ads.telegram.org/docs/api#getcurrentaccount" id="getcurrentaccount"><i class="anchor-icon"></i></a>getCurrentAccount</h4>
+<p>Use this method to get the current account. Requires no parameters. On success, returns an <a href="https://ads.telegram.org/docs/api#account">Account</a> object.</p>
+<h4><a class="anchor" name="getaccountsbyid" href="https://ads.telegram.org/docs/api#getaccountsbyid" id="getaccountsbyid"><i class="anchor-icon"></i></a>getAccountsById</h4>
+<p>Use this method to get accounts by their identifiers. On success, an array of <a href="https://ads.telegram.org/docs/api#account">Account</a> objects is returned.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_ids</td>
+<td>Array of String</td>
+<td>Yes</td>
+<td>A JSON-serialized list of account identifiers.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="getaccounttransactionslist" href="https://ads.telegram.org/docs/api#getaccounttransactionslist" id="getaccounttransactionslist"><i class="anchor-icon"></i></a>getAccountTransactionsList</h4>
+<p>Use this method to get a list of transactions related to an account. On success, returns an <a href="https://ads.telegram.org/docs/api#accounttransactionslist">AccountTransactionsList</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account whose transaction list will be returned. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Offset of the transaction list to be returned.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Limits the number of transactions to be retrieved. Defaults to 100.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="getaccountstats" href="https://ads.telegram.org/docs/api#getaccountstats" id="getaccountstats"><i class="anchor-icon"></i></a>getAccountStats</h4>
+<p>Use this method to get statistics related to the account. On success, returns an array of <a href="https://ads.telegram.org/docs/api#adstatitem">AdStatItem</a> objects.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to get statistics. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>from_time</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Start of the period, in Unix time. It will be rounded to the start of the interval. The start point is included in the result. The period should not be longer than 1000*interval.</td>
+</tr>
+<tr>
+<td>to_time</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>End of the period, in Unix time. It will be rounded to the start of the interval. The end point is not included in the result. The period should not be longer than 1000*interval.</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Interval in seconds, can be either <em>300</em> (5 min) or <em>86400</em> (1 day).</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="getaccountreport" href="https://ads.telegram.org/docs/api#getaccountreport" id="getaccountreport"><i class="anchor-icon"></i></a>getAccountReport</h4>
+<p>Use this method to get a report of the active advertisements for the account. On success, returns an array of <a href="https://ads.telegram.org/docs/api#accountreportitem">AccountReportItem</a> objects.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to get a report. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>year</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Year of the report, 2021-2100.</td>
+</tr>
+<tr>
+<td>month</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Month of the report, 1-12.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="uploadadphoto" href="https://ads.telegram.org/docs/api#uploadadphoto" id="uploadadphoto"><i class="anchor-icon"></i></a>uploadAdPhoto</h4>
+<p>Use this method to upload a photo to be displayed in the advertisement. On success, returns an <a href="https://ads.telegram.org/docs/api#adphoto">AdPhoto</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to upload the photo. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>file</td>
+<td><a href="https://ads.telegram.org/docs/api#inputfile">InputFile</a></td>
+<td>Yes</td>
+<td>Photo to upload. The photo should be in JPEG or PNG format, up to 5 MB in size, and at least 640 pixels in width with a 16:9 aspect ratio.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="uploadadvideo" href="https://ads.telegram.org/docs/api#uploadadvideo" id="uploadadvideo"><i class="anchor-icon"></i></a>uploadAdVideo</h4>
+<p>Use this method to upload a video to be displayed in the advertisement. On success, returns an <a href="https://ads.telegram.org/docs/api#advideo">AdVideo</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to upload the video. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>file</td>
+<td><a href="https://ads.telegram.org/docs/api#inputfile">InputFile</a></td>
+<td>Yes</td>
+<td>Video to upload. The video should be in MP4 format, up to 20 MB in size, at least 640 pixels in width with a 16:9 aspect ratio, and with a duration between 3 and 60 seconds.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="uploadwebsitephoto" href="https://ads.telegram.org/docs/api#uploadwebsitephoto" id="uploadwebsitephoto"><i class="anchor-icon"></i></a>uploadWebsitePhoto</h4>
+<p>Use this method to upload a photo of the website you want to promote. On success, returns an <a href="https://ads.telegram.org/docs/api#websitephoto">WebsitePhoto</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to upload a photo of the website. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>file</td>
+<td><a href="https://ads.telegram.org/docs/api#inputfile">InputFile</a></td>
+<td>Yes</td>
+<td>Photo to upload. The photo should be in JPEG or PNG format, up to 1 MB in size, and at least 150x150 pixels in dimensions.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="createad" href="https://ads.telegram.org/docs/api#createad" id="createad"><i class="anchor-icon"></i></a>createAd</h4>
+<p>Use this method to create a new advertisement. On success, returns an <a href="https://ads.telegram.org/docs/api#ad">Ad</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to create an ad. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Yes</td>
+<td>New ad title, 1-128 bytes. Only displayed in the Telegram Ads interface.</td>
+</tr>
+<tr>
+<td>text</td>
+<td>String</td>
+<td>Optional</td>
+<td>Text of the advertisement, 1-160 characters. This is what your target audience will see. Required for all targeting types except <em>search</em>.</td>
+</tr>
+<tr>
+<td>photo_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the uploaded photo to be displayed in the advertisement. To upload a photo, use the <a href="https://ads.telegram.org/docs/api#uploadadphoto">uploadAdPhoto</a> method. On average, ads with a photo require a 50-80% higher CPM to be displayed. Applicable for targeting types <em>channels</em> or <em>users</em> only. Only one of <em>photo_id</em> or <em>video_id</em> can be used.</td>
+</tr>
+<tr>
+<td>video_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the uploaded video to be displayed in the advertisement. To upload a video, use the <a href="https://ads.telegram.org/docs/api#uploadadvideo">uploadAdVideo</a> method. On average, ads with a video require a 70-100% higher CPM to be displayed. Applicable for targeting types <em>channels</em> or <em>users</em> only. Only one of <em>video_id</em> or <em>photo_id</em> can be used.</td>
+</tr>
+<tr>
+<td>promote_url</td>
+<td>String</td>
+<td>Yes</td>
+<td>A valid URL of the channel, post, bot or website you want to promote, 1-256 characters. The button below the ad will open this link.</td>
+</tr>
+<tr>
+<td>cpm</td>
+<td>Float</td>
+<td>Yes</td>
+<td>The price per 1000 impressions in the account's currency. The value will be rounded to the cpm &amp; budget precision of the account's currency (see <a href="https://ads.telegram.org/docs/api#currencies">Currencies</a>). The minimum value depends on the account's currency and other advertisement parameters.</td>
+</tr>
+<tr>
+<td>placement</td>
+<td>String</td>
+<td>Yes</td>
+<td>Placement of the advertisement. Must be one of “channel_post”, “bot_banner”, “search_result” or “video_banner”. This field determines where the ad will be shown.<br>While currently optional for backward compatibility – if not specified, the value will be inferred from <em>target.type</em> – <strong>it is strongly recommended to always provide this field explicitly</strong>, as missing <em>placement</em> may lead to errors in future versions.</td>
+</tr>
+<tr>
+<td>target</td>
+<td><a href="https://ads.telegram.org/docs/api#inputadtarget">InputAdTarget</a></td>
+<td>Yes</td>
+<td>Target settings.</td>
+</tr>
+<tr>
+<td>impression_frequency</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Frequency of ad impressions to a single user per day, 1-4. Defaults to 1.</td>
+</tr>
+<tr>
+<td>website_name</td>
+<td>String</td>
+<td>Optional</td>
+<td>Name of the website you want to promote, 1-40 characters. Required if the URL you want to promote is an external link.</td>
+</tr>
+<tr>
+<td>website_photo_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the uploaded photo of the website you want to promote. To upload a photo, use the <a href="https://ads.telegram.org/docs/api#uploadwebsitephoto">uploadWebsitePhoto</a> method.</td>
+</tr>
+<tr>
+<td>button</td>
+<td>String</td>
+<td>Optional</td>
+<td>Type of the button to be displayed in the advertisement. Applicable only if the URL you want to promote is an external link. Can be either “subscribe”, “view”, “read”, “learn_more”, “download”, “open”, “sign_up”, “buy”, “order”, “play”, “try” or “leave_request”. If empty, the default button labeled “Open Website” will be displayed.</td>
+</tr>
+<tr>
+<td>conversion_event_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>A pixel event used to track conversions. Applicable only if the URL you want to promote is an external link.</td>
+</tr>
+<tr>
+<td>additional_info</td>
+<td>String</td>
+<td>Optional</td>
+<td>Additional information that can be viewed by users, 0-64 characters. This information can be viewed by users only if the <em>legal_name</em> field is filled in the <a href="https://ads.telegram.org/docs/api#accountinfo">AccountInfo</a>.</td>
+</tr>
+<tr>
+<td>show_userpic</td>
+<td>Boolean</td>
+<td>Optional</td>
+<td>Pass <em>True</em> if the advertisement should contain a picture of the promoted channel or bot. On average, ads with a picture require a 30% higher CPM to be displayed.</td>
+</tr>
+<tr>
+<td>initial_budget</td>
+<td>Float</td>
+<td>Optional</td>
+<td>Amount in the account's currency that will be added to the ad budget from the account budget. The account budget must have enough funds. The value will be rounded to the cpm &amp; budget precision of the account's currency (see <a href="https://ads.telegram.org/docs/api#currencies">Currencies</a>). Defaults to 0.</td>
+</tr>
+<tr>
+<td>daily_budget_limit</td>
+<td>Float</td>
+<td>Optional</td>
+<td>Amount limit in the account's currency that can be spent daily. If 0, the limit is not applied. The value will be rounded to the cpm &amp; budget precision of the account's currency (see <a href="https://ads.telegram.org/docs/api#currencies">Currencies</a>). Defaults to 0.</td>
+</tr>
+<tr>
+<td>is_paused</td>
+<td>Boolean</td>
+<td>Optional</td>
+<td>Pass <em>True</em> if the advertisement should remain on hold after creation. Ignored if <em>activate_date</em> or <em>deactivate_date</em> are passed.</td>
+</tr>
+<tr>
+<td>activate_date</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Date in Unix time when the advertisement will be activated. It will be rounded to the start of a minute. The date should be later than the current time but not more than 365 days from the current time. If passed, <em>is_paused</em> will be set to <em>True</em> if the value is in the future, otherwise, <em>is_paused</em> will be set to <em>False</em>.</td>
+</tr>
+<tr>
+<td>deactivate_date</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Date in Unix time when the advertisement will be paused. It will be rounded to the start of a minute. The date should be later than the current time but not more than 365 days from the current time. If passed, <em>is_paused</em> will be set to <em>False</em> if the value is in the future and <em>activate_date</em> is not set, otherwise, <em>is_paused</em> will be set to <em>True</em>.</td>
+</tr>
+<tr>
+<td>schedule</td>
+<td><a href="https://ads.telegram.org/docs/api#inputadschedule">InputAdSchedule</a></td>
+<td>Optional</td>
+<td>Schedule for displaying the advertisement by hours.</td>
+</tr>
+<tr>
+<td>return_target</td>
+<td>Boolean</td>
+<td>Optional</td>
+<td>Pass <em>True</em> to retrieve target settings in the returned <a href="https://ads.telegram.org/docs/api#ad">Ad</a> object.</td>
+</tr>
+<tr>
+<td>idempotency_key</td>
+<td>String</td>
+<td>Optional</td>
+<td>A unique key to perform an idempotent request, 0-128 characters. You can also pass this key in the HTTP header <code>Idempotency-Key: &lt;key&gt;</code> instead.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="editad" href="https://ads.telegram.org/docs/api#editad" id="editad"><i class="anchor-icon"></i></a>editAd</h4>
+<p>Use this method to edit an existing advertisement. On success, returns an <a href="https://ads.telegram.org/docs/api#ad">Ad</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to edit an ad. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>ad_id</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Unique identifier of the ad to edit.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Optional</td>
+<td>New ad title, 1-128 bytes. Only displayed in the ad interface.</td>
+</tr>
+<tr>
+<td>text</td>
+<td>String</td>
+<td>Optional</td>
+<td>Text of the advertisement, 1-160 characters. This is what your target audience will see.</td>
+</tr>
+<tr>
+<td>photo_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the uploaded photo to be displayed in the advertisement. To upload a photo, use the <a href="https://ads.telegram.org/docs/api#uploadadphoto">uploadAdPhoto</a> method. On average, ads with a photo require a 50-80% higher CPM to be displayed. Applicable for targeting types <em>channels</em> or <em>users</em> only. If passed, any previously set photo or video will be removed. Only one of <em>photo_id</em> or <em>video_id</em> can be used.</td>
+</tr>
+<tr>
+<td>video_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the uploaded video to be displayed in the advertisement. To upload a video, use the <a href="https://ads.telegram.org/docs/api#uploadadvideo">uploadAdVideo</a> method. On average, ads with a video require a 70-100% higher CPM to be displayed. Applicable for targeting types <em>channels</em> or <em>users</em> only. If passed, any previously set photo or video will be removed. Only one of <em>video_id</em> or <em>photo_id</em> can be used.</td>
+</tr>
+<tr>
+<td>promote_url</td>
+<td>String</td>
+<td>Optional</td>
+<td>A valid URL of the channel, post, bot or website you want to promote, 1-256 characters. The button below the ad will open this link.</td>
+</tr>
+<tr>
+<td>cpm</td>
+<td>Float</td>
+<td>Optional</td>
+<td>The price per 1000 impressions in the account's currency. The value will be rounded to the cpm &amp; budget precision of the account's currency (see <a href="https://ads.telegram.org/docs/api#currencies">Currencies</a>). The minimum value depends on the account's currency and other advertisement parameters.</td>
+</tr>
+<tr>
+<td>impression_frequency</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Frequency of ad impressions to a single user per day, 1-4. Defaults to 1.</td>
+</tr>
+<tr>
+<td>website_name</td>
+<td>String</td>
+<td>Optional</td>
+<td>Name of the website you want to promote, 1-40 characters.</td>
+</tr>
+<tr>
+<td>website_photo_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the uploaded photo of the website you want to promote. To upload a photo, use the <a href="https://ads.telegram.org/docs/api#uploadwebsitephoto">uploadWebsitePhoto</a> method.</td>
+</tr>
+<tr>
+<td>button</td>
+<td>String</td>
+<td>Optional</td>
+<td>Type of the button to be displayed in the advertisement. Applicable only if the URL you want to promote is an external link. Can be either “subscribe”, “view”, “read”, “learn_more”, “download”, “open”, “sign_up”, “buy”, “order”, “play”, “try” or “leave_request”. If empty, the default button labeled “Open Website” will be displayed.</td>
+</tr>
+<tr>
+<td>conversion_event_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>A pixel event used to track conversions. Applicable only if the URL you want to promote is an external link. Can't be changed if already set.</td>
+</tr>
+<tr>
+<td>additional_info</td>
+<td>String</td>
+<td>Optional</td>
+<td>Additional information that can be viewed by users, 0-64 characters. This information can be viewed by users only if the <em>legal_name</em> field is filled in the <a href="https://ads.telegram.org/docs/api#accountinfo">AccountInfo</a>. Can't be changed if already set.</td>
+</tr>
+<tr>
+<td>show_userpic</td>
+<td>Boolean</td>
+<td>Optional</td>
+<td>Pass <em>True</em> if the advertisement should contain a picture of the promoted channel or bot. On average, ads with a picture require a 30% higher CPM to be displayed.</td>
+</tr>
+<tr>
+<td>daily_budget_limit</td>
+<td>Float</td>
+<td>Optional</td>
+<td>Amount limit in the account's currency that can be spent daily. If 0, the limit is not applied. The value will be rounded to the cpm &amp; budget precision of the account's currency (see <a href="https://ads.telegram.org/docs/api#currencies">Currencies</a>).</td>
+</tr>
+<tr>
+<td>is_paused</td>
+<td>Boolean</td>
+<td>Optional</td>
+<td>Pass <em>True</em> if the advertisement needs to be paused. Pass <em>False</em> if the paused advertisement needs to be resumed. If passed, previously set <em>activate_date</em> and <em>deactivate_date</em> will be reset. Ignored if <em>activate_date</em> or <em>deactivate_date</em> are passed.</td>
+</tr>
+<tr>
+<td>activate_date</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Date in Unix time when the advertisement will be activated. It will be rounded to the start of a minute. The date should be later than the current time but not more than 365 days from the current time. If passed, <em>is_paused</em> will be set to <em>True</em> if the value is in the future, otherwise, <em>is_paused</em> will be set to <em>False</em>.</td>
+</tr>
+<tr>
+<td>deactivate_date</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Date in Unix time when the advertisement will be paused. It will be rounded to the start of a minute. The date should be later than the current time but not more than 365 days from the current time. If passed, <em>is_paused</em> will be set to <em>False</em> if the value is in the future and <em>activate_date</em> is not set, otherwise, <em>is_paused</em> will be set to <em>True</em>.</td>
+</tr>
+<tr>
+<td>schedule</td>
+<td><a href="https://ads.telegram.org/docs/api#inputadschedule">InputAdSchedule</a></td>
+<td>Optional</td>
+<td>Schedule for displaying the advertisement by hours.</td>
+</tr>
+<tr>
+<td>return_target</td>
+<td>Boolean</td>
+<td>Optional</td>
+<td>Pass <em>True</em> to retrieve target settings in the returned <a href="https://ads.telegram.org/docs/api#ad">Ad</a> object.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="editadstatus" href="https://ads.telegram.org/docs/api#editadstatus" id="editadstatus"><i class="anchor-icon"></i></a>editAdStatus</h4>
+<p><em>Deprecated.</em> Use method <a href="https://ads.telegram.org/docs/api#editad">editAd</a> with parameter <em>is_paused</em> instead.</p>
+<h4><a class="anchor" name="increaseadbudget" href="https://ads.telegram.org/docs/api#increaseadbudget" id="increaseadbudget"><i class="anchor-icon"></i></a>increaseAdBudget</h4>
+<p>Use this method to increase the budget of an advertisement. The account budget must have enough funds. On success, returns an <a href="https://ads.telegram.org/docs/api#ad">Ad</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to increase an ad budget. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>ad_id</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Unique identifier of the advertisement to increase budget.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Float</td>
+<td>Yes</td>
+<td>Amount in the account's currency that will be added to the ad budget from the account budget. The value will be rounded to the amount precision of the account's currency (see <a href="https://ads.telegram.org/docs/api#currencies">Currencies</a>).</td>
+</tr>
+<tr>
+<td>return_target</td>
+<td>Boolean</td>
+<td>Optional</td>
+<td>Pass <em>True</em> to retrieve target settings in the returned <a href="https://ads.telegram.org/docs/api#ad">Ad</a> object.</td>
+</tr>
+<tr>
+<td>idempotency_key</td>
+<td>String</td>
+<td>Optional</td>
+<td>A unique key to perform an idempotent request, 0-128 characters. You can also pass this key in the HTTP header <code>Idempotency-Key: &lt;key&gt;</code> instead.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="decreaseadbudget" href="https://ads.telegram.org/docs/api#decreaseadbudget" id="decreaseadbudget"><i class="anchor-icon"></i></a>decreaseAdBudget</h4>
+<p>Use this method to decrease the budget of an advertisement. The ad budget must have enough funds. To decrease the budget of an ad, it must be inactive for at least 10 minutes. On success, returns an <a href="https://ads.telegram.org/docs/api#ad">Ad</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to decrease an ad budget. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>ad_id</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Unique identifier of the advertisement whose budget should be decreased.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Float</td>
+<td>Yes</td>
+<td>Amount in the account's currency that will be withdrawn from the ad budget to the account budget. The value will be rounded to the amount precision of the account's currency (see <a href="https://ads.telegram.org/docs/api#currencies">Currencies</a>).</td>
+</tr>
+<tr>
+<td>return_target</td>
+<td>Boolean</td>
+<td>Optional</td>
+<td>Pass <em>True</em> to retrieve target settings in the returned <a href="https://ads.telegram.org/docs/api#ad">Ad</a> object.</td>
+</tr>
+<tr>
+<td>idempotency_key</td>
+<td>String</td>
+<td>Optional</td>
+<td>A unique key to perform an idempotent request, 0-128 characters. You can also pass this key in the HTTP header <code>Idempotency-Key: &lt;key&gt;</code> instead.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="submitadforreview" href="https://ads.telegram.org/docs/api#submitadforreview" id="submitadforreview"><i class="anchor-icon"></i></a>submitAdForReview</h4>
+<p>Use this method to submit an advertisement for review. Can only be used for ads with the “ready_for_review” status. Ads are submitted for review automatically when they are created or edited, provided the ad's budget is not empty. If an ad has the “ready_for_review” status, it will not be submitted for review automatically and must be submitted using this method. On success, returns an <a href="https://ads.telegram.org/docs/api#ad">Ad</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to submit an ad for review. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>ad_id</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Unique identifier of the ad to submit for review.</td>
+</tr>
+<tr>
+<td>return_target</td>
+<td>Boolean</td>
+<td>Optional</td>
+<td>Pass <em>True</em> to retrieve target settings in the returned <a href="https://ads.telegram.org/docs/api#ad">Ad</a> object.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="deletead" href="https://ads.telegram.org/docs/api#deletead" id="deletead"><i class="anchor-icon"></i></a>deleteAd</h4>
+<p>Use this method to delete an existing advertisement. To delete an ad, it must be inactive for at least 10 minutes. Returns <em>True</em> on success.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to delete an ad. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>ad_id</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Unique identifier of the advertisement to delete.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="getadsbyid" href="https://ads.telegram.org/docs/api#getadsbyid" id="getadsbyid"><i class="anchor-icon"></i></a>getAdsById</h4>
+<p>Use this method to get advertisements by their identifiers. On success, an array of <a href="https://ads.telegram.org/docs/api#ad">Ad</a> objects is returned.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to get ads. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>ad_ids</td>
+<td>Array of Integer</td>
+<td>Yes</td>
+<td>A JSON-serialized list of unique ad identifiers.</td>
+</tr>
+<tr>
+<td>return_target</td>
+<td>Boolean</td>
+<td>Optional</td>
+<td>Pass <em>True</em> to retrieve target settings in the returned <a href="https://ads.telegram.org/docs/api#ad">Ad</a> objects.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="getadslist" href="https://ads.telegram.org/docs/api#getadslist" id="getadslist"><i class="anchor-icon"></i></a>getAdsList</h4>
+<p>Use this method to get a list of advertisements for the current account. On success, returns an <a href="https://ads.telegram.org/docs/api#adlist">AdList</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to get ads list. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>String</td>
+<td>Optional</td>
+<td>Offset of the ads list to be returned.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Limits the number of ads to be retrieved. Values between 0-100 are accepted. Defaults to 100.</td>
+</tr>
+<tr>
+<td>return_target</td>
+<td>Boolean</td>
+<td>Optional</td>
+<td>Pass <em>True</em> to retrieve target settings in the returned <a href="https://ads.telegram.org/docs/api#ad">Ad</a> objects.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="getadtransactionslist" href="https://ads.telegram.org/docs/api#getadtransactionslist" id="getadtransactionslist"><i class="anchor-icon"></i></a>getAdTransactionsList</h4>
+<p>Use this method to get a list of transactions for an advertisement. On success, returns an <a href="https://ads.telegram.org/docs/api#adtransactionslist">AdTransactionsList</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to get an ad transactions list. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>ad_id</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Unique identifier of the ad whose transaction list will be returned.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Offset of the transaction list to be returned.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Limits the number of the transactions to be retrieved. Defaults to 100.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="getadstats" href="https://ads.telegram.org/docs/api#getadstats" id="getadstats"><i class="anchor-icon"></i></a>getAdStats</h4>
+<p>Use this method to get statistics for an advertisement. On success, returns an array of <a href="https://ads.telegram.org/docs/api#adstatitem">AdStatItem</a> objects.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to get an ad stats. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>ad_id</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Unique identifier of the ad to get statistics.</td>
+</tr>
+<tr>
+<td>from_time</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Start of the period, in Unix time. It will be rounded to the start of the interval. The start point is included in the result. The period should not be longer than 1000*interval.</td>
+</tr>
+<tr>
+<td>to_time</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>End of the period, in Unix time. It will be rounded to the start of the interval. The end point is not included in the result. The period should not be longer than 1000*interval.</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Interval in seconds, can be either <em>300</em> (5 min) or <em>86400</em> (1 day).</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="createaudience" href="https://ads.telegram.org/docs/api#createaudience" id="createaudience"><i class="anchor-icon"></i></a>createAudience</h4>
+<p>Use this method to create a new audience. On success, returns an <a href="https://ads.telegram.org/docs/api#audience">Audience</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to create an audience. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Yes</td>
+<td>New audience title, 1-64 characters. Only displayed in the Telegram Ads interface.</td>
+</tr>
+<tr>
+<td>add_phones</td>
+<td>Array of String</td>
+<td>Optional</td>
+<td>List of 0-10000 phone numbers or their SHA256 hashes.</td>
+</tr>
+<tr>
+<td>idempotency_key</td>
+<td>String</td>
+<td>Optional</td>
+<td>A unique key to perform an idempotent request, 0-128 characters. You can also pass this key in the HTTP header <code>Idempotency-Key: &lt;key&gt;</code> instead.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="editaudience" href="https://ads.telegram.org/docs/api#editaudience" id="editaudience"><i class="anchor-icon"></i></a>editAudience</h4>
+<p>Use this method to edit an existing audience. If the fields <em>add_phones</em> and <em>remove_phones</em> or <em>reset_phones</em> are passed simultaneously, the deletions will be performed first, followed by the addition of new ones. On success, returns an <a href="https://ads.telegram.org/docs/api#audience">Audience</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to edit an audience. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>audience_id</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Unique identifier of the audience to edit.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Optional</td>
+<td>New audience title, 1-64 bytes. If not provided, the title will not be changed.</td>
+</tr>
+<tr>
+<td>add_phones</td>
+<td>Array of String</td>
+<td>Optional</td>
+<td>List of 0-10000 phone numbers or their SHA256 hashes to include in the audience.</td>
+</tr>
+<tr>
+<td>remove_phones</td>
+<td>Array of String</td>
+<td>Optional</td>
+<td>List of 0-10000 phone numbers or their SHA256 hashes to remove from the audience. Will be ignored if <em>reset_phones</em> is passed.</td>
+</tr>
+<tr>
+<td>reset_phones</td>
+<td>Boolean</td>
+<td>Optional</td>
+<td>Pass <em>True</em> to reset all phone numbers from the audience.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="deleteaudience" href="https://ads.telegram.org/docs/api#deleteaudience" id="deleteaudience"><i class="anchor-icon"></i></a>deleteAudience</h4>
+<p>Use this method to delete an existing audience. You can only delete an audience that is not currently used in any advertisements. Returns <em>True</em> on success.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to delele an audience. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>audience_id</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Unique identifier of the audience to delete.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="getaudiencesbyid" href="https://ads.telegram.org/docs/api#getaudiencesbyid" id="getaudiencesbyid"><i class="anchor-icon"></i></a>getAudiencesById</h4>
+<p>Use this method to get audiences by their identifiers. On success, an array of <a href="https://ads.telegram.org/docs/api#audience">Audience</a> objects is returned.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to get audiences. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>audience_ids</td>
+<td>Array of Integer</td>
+<td>Yes</td>
+<td>A JSON-serialized list of audience identifiers.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="getaudienceslist" href="https://ads.telegram.org/docs/api#getaudienceslist" id="getaudienceslist"><i class="anchor-icon"></i></a>getAudiencesList</h4>
+<p>Use this method to get the list of audiences. On success, returns an <a href="https://ads.telegram.org/docs/api#audienceslist">AudiencesList</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to get audiences list. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Offset of the audiences list to be returned.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Limits the number of audiences to be retrieved. By default, all audiences are returned.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="createpixel" href="https://ads.telegram.org/docs/api#createpixel" id="createpixel"><i class="anchor-icon"></i></a>createPixel</h4>
+<p>Use this method to create a Pixel Tag. On success, returns a <a href="https://ads.telegram.org/docs/api#pixel">Pixel</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to create a pixel. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>idempotency_key</td>
+<td>String</td>
+<td>Optional</td>
+<td>A unique key to perform an idempotent request, 0-128 characters. You can also pass this key in the HTTP header <code>Idempotency-Key: &lt;key&gt;</code> instead.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="getpixel" href="https://ads.telegram.org/docs/api#getpixel" id="getpixel"><i class="anchor-icon"></i></a>getPixel</h4>
+<p>Use this method to get a Pixel Tag related to the account. On success, returns a <a href="https://ads.telegram.org/docs/api#pixel">Pixel</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to get a pixel. If not specified, the current account will be used.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="createpixelevent" href="https://ads.telegram.org/docs/api#createpixelevent" id="createpixelevent"><i class="anchor-icon"></i></a>createPixelEvent</h4>
+<p>Use this method to create a new pixel event. On success, returns a <a href="https://ads.telegram.org/docs/api#pixelevent">PixelEvent</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to create an event. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Yes</td>
+<td>New event title, 1-64 characters. Only displayed in the Telegram Ads interface.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Yes</td>
+<td>Type of the event that most closely matches the action you want to track. Can be either “page_view”, “add_to_cart”, “add_to_wishlist”, “customize_product”, “initiate_checkout”, “add_payment_info”, “purchase”, “contact”, “lead”, “schedule”, “complete_registration”, “submit_application”, “start_trial”, “subscribe”, “view_content”, “search”, “find_location”, “donate”, “custom”.</td>
+</tr>
+<tr>
+<td>idempotency_key</td>
+<td>String</td>
+<td>Optional</td>
+<td>A unique key to perform an idempotent request, 0-128 characters. You can also pass this key in the HTTP header <code>Idempotency-Key: &lt;key&gt;</code> instead.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="editpixelevent" href="https://ads.telegram.org/docs/api#editpixelevent" id="editpixelevent"><i class="anchor-icon"></i></a>editPixelEvent</h4>
+<p>Use this method to edit an existing pixel event. You can't edit a pixel event that was automatically created. On success, returns a <a href="https://ads.telegram.org/docs/api#pixelevent">PixelEvent</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to edit the pixel event. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>event_id</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unique identifier of the pixel event to edit.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Yes</td>
+<td>New event title, 1-64 bytes.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="deletepixelevent" href="https://ads.telegram.org/docs/api#deletepixelevent" id="deletepixelevent"><i class="anchor-icon"></i></a>deletePixelEvent</h4>
+<p>Use this method to delete an existing pixel event. You can only delete a pixel event that is not currently used in any advertisements and was not automatically created. Returns <em>True</em> on success.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to delete the pixel event. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>event_id</td>
+<td>String</td>
+<td>Yes</td>
+<td>Unique identifier of the pixel event to delete.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="getpixeleventsbyid" href="https://ads.telegram.org/docs/api#getpixeleventsbyid" id="getpixeleventsbyid"><i class="anchor-icon"></i></a>getPixelEventsById</h4>
+<p>Use this method to get pixel events by their identifiers. On success, an array of <a href="https://ads.telegram.org/docs/api#pixelevent">PixelEvent</a> objects is returned.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to get pixel events. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>event_ids</td>
+<td>Array of String</td>
+<td>Yes</td>
+<td>A JSON-serialized list of pixel event identifiers.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="getpixeleventslist" href="https://ads.telegram.org/docs/api#getpixeleventslist" id="getpixeleventslist"><i class="anchor-icon"></i></a>getPixelEventsList</h4>
+<p>Use this method to get a list of pixel events. On success, returns a <a href="https://ads.telegram.org/docs/api#pixeleventslist">PixelEventsList</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Optional</td>
+<td>Unique identifier of the account to get pixel events list. If not specified, the current account will be used.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Offset of the list of pixel events to return.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Limits the number of pixel events to be retrieved. By default, all pixel events are returned.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="gettargetlanguageslist" href="https://ads.telegram.org/docs/api#gettargetlanguageslist" id="gettargetlanguageslist"><i class="anchor-icon"></i></a>getTargetLanguagesList</h4>
+<p>Use this method to get the list of available target languages. Requires no parameters. On success, returns an array of <a href="https://ads.telegram.org/docs/api#targetlanguage">TargetLanguage</a> objects.</p>
+<h4><a class="anchor" name="gettargettopicslist" href="https://ads.telegram.org/docs/api#gettargettopicslist" id="gettargettopicslist"><i class="anchor-icon"></i></a>getTargetTopicsList</h4>
+<p>Use this method to get the list of available target topics. Requires no parameters. On success, returns an array of <a href="https://ads.telegram.org/docs/api#targettopic">TargetTopic</a> objects.</p>
+<h4><a class="anchor" name="gettargetcountrieslist" href="https://ads.telegram.org/docs/api#gettargetcountrieslist" id="gettargetcountrieslist"><i class="anchor-icon"></i></a>getTargetCountriesList</h4>
+<p>Use this method to get the list of available target countries. Requires no parameters. On success, returns an array of <a href="https://ads.telegram.org/docs/api#targetcountry">TargetCountry</a> objects.</p>
+<h4><a class="anchor" name="gettargetlocationsbyid" href="https://ads.telegram.org/docs/api#gettargetlocationsbyid" id="gettargetlocationsbyid"><i class="anchor-icon"></i></a>getTargetLocationsById</h4>
+<p>Use this method to get locations by their identifiers. On success, an array of <a href="https://ads.telegram.org/docs/api#targetlocation">TargetLocation</a> objects is returned.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>location_ids</td>
+<td>Array of Integer</td>
+<td>Yes</td>
+<td>A JSON-serialized list of unique location identifiers.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="gettargetlocationslist" href="https://ads.telegram.org/docs/api#gettargetlocationslist" id="gettargetlocationslist"><i class="anchor-icon"></i></a>getTargetLocationsList</h4>
+<p>Use this method to get target locations. On success, returns a <a href="https://ads.telegram.org/docs/api#targetlocationlist">TargetLocationList</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>country_code</td>
+<td>String</td>
+<td>Yes</td>
+<td>Two-letter ISO 3166-1 alpha-2 country code.</td>
+</tr>
+<tr>
+<td>query</td>
+<td>String</td>
+<td>Yes</td>
+<td>Text of the query.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>String</td>
+<td>Optional</td>
+<td>Offset of the locations list to be returned.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>Optional</td>
+<td>Limits the number of locations to be retrieved. Defaults to 100.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="gettargetchannel" href="https://ads.telegram.org/docs/api#gettargetchannel" id="gettargetchannel"><i class="anchor-icon"></i></a>getTargetChannel</h4>
+<p>Use this method to get target channel. On success, returns a <a href="https://ads.telegram.org/docs/api#targetchannel">TargetChannel</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_id</td>
+<td>Integer or String</td>
+<td>Yes</td>
+<td>Unique identifier for the target channel or username of the target channel (in the format <code>@channelusername</code>). Numeric identifiers can only be used if they were previously resolved by this account via username (see <a href="https://ads.telegram.org/docs/api#resolving-channels-and-bots">Resolving channels and bots</a>).</td>
+</tr>
+<tr>
+<td>for_excluding</td>
+<td>Boolean</td>
+<td>Optional</td>
+<td>Pass <em>True</em>  if you want to exclude the channel.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="gettargetbot" href="https://ads.telegram.org/docs/api#gettargetbot" id="gettargetbot"><i class="anchor-icon"></i></a>getTargetBot</h4>
+<p>Use this method to get target bot. On success, returns a <a href="https://ads.telegram.org/docs/api#targetbot">TargetBot</a> object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bot_id</td>
+<td>Integer or String</td>
+<td>Yes</td>
+<td>Unique identifier for the target bot or username of the target bot (in the format <code>@usernamebot</code>). Numeric identifiers can only be used if they were previously resolved by this account via username (see <a href="https://ads.telegram.org/docs/api#resolving-channels-and-bots">Resolving channels and bots</a>).</td>
+</tr>
+</tbody>
+</table>
+<h3><a class="anchor" name="available-types" href="https://ads.telegram.org/docs/api#available-types" id="available-types"><i class="anchor-icon"></i></a>Available types</h3>
+<p>All types used in the Telegram Ads API responses are represented as JSON-objects.</p>
+<p>It is safe to use 32-bit signed integers for storing all <strong>Integer</strong> fields unless otherwise noted.</p>
+<blockquote>
+<p><strong>Optional</strong> fields may be not returned when irrelevant.</p>
+</blockquote>
+<h4><a class="anchor" name="account" href="https://ads.telegram.org/docs/api#account" id="account"><i class="anchor-icon"></i></a>Account</h4>
+<p>This object represents an advertiser account.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Unique account identifier.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Title of the account.</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>String</td>
+<td>Currency of the account. Can be either “EUR”, “TON” or “XTR”.</td>
+</tr>
+<tr>
+<td>spent_budget</td>
+<td>Float</td>
+<td>Spent amount in the account's currency.</td>
+</tr>
+<tr>
+<td>remaining_budget</td>
+<td>Float</td>
+<td>Remaining amount in the account's currency.</td>
+</tr>
+<tr>
+<td>ads_budget</td>
+<td>Float</td>
+<td>Remaining amount in the account's currency on advertisement budgets.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="accountinfo" href="https://ads.telegram.org/docs/api#accountinfo" id="accountinfo"><i class="anchor-icon"></i></a>AccountInfo</h4>
+<p>This object represents an information of an advertiser account.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Unique account identifier.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Title of the account.</td>
+</tr>
+<tr>
+<td>full_name</td>
+<td>String</td>
+<td>Full company name of the account.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>Company email of the account.</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td>String</td>
+<td>Phone number of the company of the account.</td>
+</tr>
+<tr>
+<td>country</td>
+<td>String</td>
+<td>Company's country of the account.</td>
+</tr>
+<tr>
+<td>city</td>
+<td>String</td>
+<td>Company's city of the account.</td>
+</tr>
+<tr>
+<td>legal_name</td>
+<td>String</td>
+<td><em>Optional.</em> Advertiser's legal name of the account.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="relatedaccountslist" href="https://ads.telegram.org/docs/api#relatedaccountslist" id="relatedaccountslist"><i class="anchor-icon"></i></a>RelatedAccountsList</h4>
+<p>This object represents a related accounts list.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>total_count</td>
+<td>Integer</td>
+<td>Total number of related accounts.</td>
+</tr>
+<tr>
+<td>accounts</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#account">Account</a></td>
+<td>List of requested related accounts.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="transactionstatus" href="https://ads.telegram.org/docs/api#transactionstatus" id="transactionstatus"><i class="anchor-icon"></i></a>TransactionStatus</h4>
+<p>This object represents a transaction status.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transaction_id</td>
+<td>String</td>
+<td>Unique identifier of the transaction.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>Status of the transaction, can be either “in_progress”, “failed”, “completed”.</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>String</td>
+<td>Currency of the account. Can be either “EUR”, “TON” or “XTR”.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Float</td>
+<td>Transaction amount in the account's currency. Negative amount means withdrawal from the related account.</td>
+</tr>
+<tr>
+<td>main_account</td>
+<td><a href="https://ads.telegram.org/docs/api#account">Account</a></td>
+<td>Current account.</td>
+</tr>
+<tr>
+<td>related_account</td>
+<td><a href="https://ads.telegram.org/docs/api#account">Account</a></td>
+<td>Related account.</td>
+</tr>
+<tr>
+<td>error</td>
+<td>String</td>
+<td><em>Optional.</em> Error description in case of failed transaction (e.g. NOT_ENOUGH_BUDGET).</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="accounttransactionslist" href="https://ads.telegram.org/docs/api#accounttransactionslist" id="accounttransactionslist"><i class="anchor-icon"></i></a>AccountTransactionsList</h4>
+<p>This object represents a list of transactions related to an account.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>total_count</td>
+<td>Integer</td>
+<td>Total number of transactions.</td>
+</tr>
+<tr>
+<td>transactions</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#accounttransaction">AccountTransaction</a></td>
+<td>List of requested transactions.</td>
+</tr>
+<tr>
+<td>next_offset</td>
+<td>String</td>
+<td><em>Optional.</em> If present, represents the offset to receive the next portion of the transactions.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="accounttransaction" href="https://ads.telegram.org/docs/api#accounttransaction" id="accounttransaction"><i class="anchor-icon"></i></a>AccountTransaction</h4>
+<p>This object represents an account transaction.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>peer</td>
+<td><a href="https://ads.telegram.org/docs/api#accounttransactionpeer">AccountTransactionPeer</a></td>
+<td>The peer involved in the transaction.</td>
+</tr>
+<tr>
+<td>date</td>
+<td>Integer</td>
+<td>Point in time (Unix timestamp) when the transaction occurred.</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>String</td>
+<td>Currency of the account. Can be either “EUR”, “TON” or “XTR”.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Float</td>
+<td>Transaction amount in the account's currency. A negative amount represents a withdrawal from the account budget.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="accounttransactionpeer" href="https://ads.telegram.org/docs/api#accounttransactionpeer" id="accounttransactionpeer"><i class="anchor-icon"></i></a>AccountTransactionPeer</h4>
+<p>This object represents the peer involved in an account transaction. Currently, it can be one of</p>
+<ul>
+<li><a href="https://ads.telegram.org/docs/api#accounttransactionpeerexternal">AccountTransactionPeerExternal</a></li>
+<li><a href="https://ads.telegram.org/docs/api#accounttransactionpeermainaccount">AccountTransactionPeerMainAccount</a></li>
+<li><a href="https://ads.telegram.org/docs/api#accounttransactionpeerrelatedaccount">AccountTransactionPeerRelatedAccount</a></li>
+<li><a href="https://ads.telegram.org/docs/api#accounttransactionpeerad">AccountTransactionPeerAd</a></li>
+</ul>
+<h4><a class="anchor" name="accounttransactionpeerexternal" href="https://ads.telegram.org/docs/api#accounttransactionpeerexternal" id="accounttransactionpeerexternal"><i class="anchor-icon"></i></a>AccountTransactionPeerExternal</h4>
+<p>The peer represents an external source of funds.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the peer, always “external”.</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>String</td>
+<td><em>Optional.</em> A comment describing the external source. For example, it could be an invoice number.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="accounttransactionpeermainaccount" href="https://ads.telegram.org/docs/api#accounttransactionpeermainaccount" id="accounttransactionpeermainaccount"><i class="anchor-icon"></i></a>AccountTransactionPeerMainAccount</h4>
+<p>The peer represents the main account.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the peer, always “main_account”.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="accounttransactionpeerrelatedaccount" href="https://ads.telegram.org/docs/api#accounttransactionpeerrelatedaccount" id="accounttransactionpeerrelatedaccount"><i class="anchor-icon"></i></a>AccountTransactionPeerRelatedAccount</h4>
+<p>The peer represents a related account.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the peer, always “related_account”.</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td>String</td>
+<td>Unique identifier of the related account.</td>
+</tr>
+<tr>
+<td>account_title</td>
+<td>String</td>
+<td>Title of the related account.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="accounttransactionpeerad" href="https://ads.telegram.org/docs/api#accounttransactionpeerad" id="accounttransactionpeerad"><i class="anchor-icon"></i></a>AccountTransactionPeerAd</h4>
+<p>The peer represents an advertisement from the current account.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the peer, always “ad”.</td>
+</tr>
+<tr>
+<td>ad_id</td>
+<td>Integer</td>
+<td>Ad identifier. Unique in the current account.</td>
+</tr>
+<tr>
+<td>ad_title</td>
+<td>String</td>
+<td>Ad title.</td>
+</tr>
+<tr>
+<td>ad_is_deleted</td>
+<td>Boolean</td>
+<td><em>Optional.</em> If <em>True</em>, the advertisement was already deleted.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="accountreportitem" href="https://ads.telegram.org/docs/api#accountreportitem" id="accountreportitem"><i class="anchor-icon"></i></a>AccountReportItem</h4>
+<p>This object represents the stats of an active advertisement.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ad_id</td>
+<td>Integer</td>
+<td>Ad identifier. Unique in the current account.</td>
+</tr>
+<tr>
+<td>ad_title</td>
+<td>String</td>
+<td>Ad title.</td>
+</tr>
+<tr>
+<td>ad_is_deleted</td>
+<td>Boolean</td>
+<td><em>Optional.</em> If <em>True</em>, the advertisement was already deleted.</td>
+</tr>
+<tr>
+<td>views</td>
+<td>Integer</td>
+<td>Views of the advertisement.</td>
+</tr>
+<tr>
+<td>opens</td>
+<td>Integer</td>
+<td>Video opens in the advertisement.</td>
+</tr>
+<tr>
+<td>clicks</td>
+<td>Integer</td>
+<td>Clicks of the advertisement.</td>
+</tr>
+<tr>
+<td>actions</td>
+<td>Integer</td>
+<td>Number of user actions counted as conversions.</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>String</td>
+<td>Currency of the account. Can be either “EUR”, “TON” or “XTR”.</td>
+</tr>
+<tr>
+<td>spent_budget</td>
+<td>Float</td>
+<td>Spent amount in the account's currency.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="inputfile" href="https://ads.telegram.org/docs/api#inputfile" id="inputfile"><i class="anchor-icon"></i></a>InputFile</h4>
+<p>This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser.</p>
+<h4><a class="anchor" name="adphoto" href="https://ads.telegram.org/docs/api#adphoto" id="adphoto"><i class="anchor-icon"></i></a>AdPhoto</h4>
+<p>This object represents a photo that can be displayed in an advertisement.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>photo_id</td>
+<td>String</td>
+<td>Unique identifier of the photo. This identifier is unique for each individual account and <strong>can't</strong> be transferred from one account to another.</td>
+</tr>
+<tr>
+<td>photo_url</td>
+<td>String</td>
+<td>URL of the photo.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="advideo" href="https://ads.telegram.org/docs/api#advideo" id="advideo"><i class="anchor-icon"></i></a>AdVideo</h4>
+<p>This object represents a video that can be displayed in an advertisement.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>video_id</td>
+<td>String</td>
+<td>Unique identifier of the video. This identifier is unique for each individual account and <strong>can't</strong> be transferred from one account to another.</td>
+</tr>
+<tr>
+<td>video_url</td>
+<td>String</td>
+<td>URL of the video.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="websitephoto" href="https://ads.telegram.org/docs/api#websitephoto" id="websitephoto"><i class="anchor-icon"></i></a>WebsitePhoto</h4>
+<p>This object represents a photo of the website.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>photo_id</td>
+<td>String</td>
+<td>Unique identifier of the photo of the website. This identifier is unique for each individual account and <strong>can't</strong> be transferred from one account to another.</td>
+</tr>
+<tr>
+<td>photo_url</td>
+<td>String</td>
+<td>URL of the photo of the website.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="ad" href="https://ads.telegram.org/docs/api#ad" id="ad"><i class="anchor-icon"></i></a>Ad</h4>
+<p>This object represents an advertisement.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ad_id</td>
+<td>Integer</td>
+<td>Ad identifier. Unique in the current account.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Ad title.</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>String</td>
+<td>Currency of the account. Can be either “EUR”, “TON” or “XTR”.</td>
+</tr>
+<tr>
+<td>text</td>
+<td>String</td>
+<td>Text of the advertisement.</td>
+</tr>
+<tr>
+<td>photo</td>
+<td><a href="https://ads.telegram.org/docs/api#adphoto">AdPhoto</a></td>
+<td><em>Optional.</em> The photo displayed in the advertisement.</td>
+</tr>
+<tr>
+<td>video</td>
+<td><a href="https://ads.telegram.org/docs/api#advideo">AdVideo</a></td>
+<td><em>Optional.</em> The video displayed in the advertisement.</td>
+</tr>
+<tr>
+<td>promote_url</td>
+<td>String</td>
+<td>The URL of the promoted channel, post, bot or website.</td>
+</tr>
+<tr>
+<td>cpm</td>
+<td>Float</td>
+<td>The price per 1000 impressions in the account's currency.</td>
+</tr>
+<tr>
+<td>placement</td>
+<td>String</td>
+<td>Placement of the advertisement. Can be either “channel_post”, “bot_banner”, “search_result” or “video_banner”.</td>
+</tr>
+<tr>
+<td>target</td>
+<td><a href="https://ads.telegram.org/docs/api#adtarget">AdTarget</a></td>
+<td><em>Optional.</em> Target settings. Returns if <em>return_target</em> is passed.</td>
+</tr>
+<tr>
+<td>impression_frequency</td>
+<td>Integer</td>
+<td><em>Optional.</em> Frequency of ad impressions to a single user per day. If empty, the ad is shown to the user only once a day.</td>
+</tr>
+<tr>
+<td>website_name</td>
+<td>String</td>
+<td><em>Optional.</em> Name of the website you want to promote.</td>
+</tr>
+<tr>
+<td>website_photo</td>
+<td><a href="https://ads.telegram.org/docs/api#websitephoto">WebsitePhoto</a></td>
+<td><em>Optional.</em> The photo of the website you want to promote.</td>
+</tr>
+<tr>
+<td>button</td>
+<td>String</td>
+<td><em>Optional.</em> Type of the button to be displayed in the advertisement. Can be either “subscribe”, “view”, “read”, “learn_more”, “download”, “open”, “sign_up”, “buy”, “order”, “play”, “try” or “leave_request”. If empty, the default button labeled “Open Website” will be displayed.</td>
+</tr>
+<tr>
+<td>conversion_event_id</td>
+<td>String</td>
+<td><em>Optional.</em> A pixel event used to track conversions.</td>
+</tr>
+<tr>
+<td>additional_info</td>
+<td>String</td>
+<td><em>Optional.</em> Additional information that can be viewed by users.</td>
+</tr>
+<tr>
+<td>show_userpic</td>
+<td>Boolean</td>
+<td><em>Optional.</em> If <em>True</em> the advertisement contains a picture of the promoted channel or bot.</td>
+</tr>
+<tr>
+<td>spent_budget</td>
+<td>Float</td>
+<td>Spent amount in the account's currency.</td>
+</tr>
+<tr>
+<td>remaining_budget</td>
+<td>Float</td>
+<td>Remaining amount in the account's currency.</td>
+</tr>
+<tr>
+<td>daily_spent_budget</td>
+<td>Float</td>
+<td><em>Optional.</em> Daily spent amount in the account's currency. Returns if a daily budget limit is set.</td>
+</tr>
+<tr>
+<td>daily_budget_limit</td>
+<td>Float</td>
+<td><em>Optional.</em> Daily budget limit in the account's currency.</td>
+</tr>
+<tr>
+<td>views</td>
+<td>Integer</td>
+<td>Views of the advertisement.</td>
+</tr>
+<tr>
+<td>opens</td>
+<td>Integer</td>
+<td><em>Optional.</em> Video opens in the advertisement.</td>
+</tr>
+<tr>
+<td>clicks</td>
+<td>Integer</td>
+<td><em>Optional.</em> Clicks of the advertisement.</td>
+</tr>
+<tr>
+<td>actions</td>
+<td>Integer</td>
+<td>Number of user actions counted as conversions. The tracked action depends on the ad's <em>action_type</em>. If <em>action_type</em> is not set, this value will be 0.</td>
+</tr>
+<tr>
+<td>action_type</td>
+<td>String</td>
+<td><em>Optional.</em> The type of action used to track conversions. Can be either “join”, “start_bot”, “launch_miniapp”, “send_message”, “page_view”, “landing_view”, “add_to_cart”, “add_to_wishlist”, “customize_product”, “initiate_checkout”, “add_payment_info”, “purchase”, “contact”, “lead”, “schedule”, “complete_registration”, “submit_application”, “start_trial”, “subscribe”, “view_content”, “search”, “find_location”, “donate”, “custom”.</td>
+</tr>
+<tr>
+<td>created_date</td>
+<td>Integer</td>
+<td>Point in time (Unix timestamp) when the advertisement was created.</td>
+</tr>
+<tr>
+<td>is_paused</td>
+<td>Boolean</td>
+<td><em>Optional.</em> <em>True</em>, if the advertisement is paused.</td>
+</tr>
+<tr>
+<td>activate_date</td>
+<td>Integer</td>
+<td><em>Optional.</em> Date in Unix time when the advertisement will be activated.</td>
+</tr>
+<tr>
+<td>deactivate_date</td>
+<td>Integer</td>
+<td><em>Optional.</em> Date in Unix time when the advertisement will be paused.</td>
+</tr>
+<tr>
+<td>schedule</td>
+<td><a href="https://ads.telegram.org/docs/api#adschedule">AdSchedule</a></td>
+<td><em>Optional.</em> Schedule for displaying the advertisement by hours.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>Status of the advertisement, can be either “stopped”, “ready_for_review”, “in_review”, “declined”, “active” or “on_hold”. An ad with the “ready_for_review” status can be submitted for review via the <a href="https://ads.telegram.org/docs/api#submitadforreview">submitAdForReview</a> method.</td>
+</tr>
+<tr>
+<td>decline_reason</td>
+<td><a href="https://ads.telegram.org/docs/api#declinereason">DeclineReason</a></td>
+<td><em>Optional.</em> Describes the reason for the advertisement rejection if status is “declined”.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="inputadschedule" href="https://ads.telegram.org/docs/api#inputadschedule" id="inputadschedule"><i class="anchor-icon"></i></a>InputAdSchedule</h4>
+<p>This object represents the schedule for displaying the ad. To remove the schedule, <em>False</em> can be used instead of this object.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>week_hours_mask</td>
+<td>Array of Integer</td>
+<td>A JSON-serialized array of bitwise masks for displaying the ad by hours. Should be an array of exactly 7 numbers. The first number determines the hours to display the ad on Mondays, the second – on Tuesdays, and so on. Each bit of the number determines whether to display the ad in the corresponding hour. The 0th bit corresponds to the period from 00:00 to 01:00, the 1st bit – from 01:00 to 02:00, and so on. So the values of the numbers should be from 0 to 16777215. If all numbers are equal to 0, it is considered that the schedule is not set, and the ad will be displayed at any time.</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>Integer</td>
+<td><em>Optional</em>. Timezone (time offset in seconds from UTC) in which the schedule should be applied. Can be either <em>-43200</em>, <em>-39600</em>, <em>-36000</em>, <em>-34200</em>, <em>-32400</em>, <em>-28800</em>, <em>-25200</em>, <em>-21600</em>, <em>-18000</em>, <em>-14400</em>, <em>-12600</em>, <em>-10800</em>, <em>-9000</em>, <em>-7200</em>, <em>-3600</em>, <em>0</em>, <em>3600</em>, <em>7200</em>, <em>10800</em>, <em>12600</em>, <em>14400</em>, <em>16200</em>, <em>18000</em>, <em>19800</em>, <em>20700</em>, <em>21600</em>, <em>23400</em>, <em>25200</em>, <em>28800</em>, <em>31500</em>, <em>32400</em>, <em>34200</em>, <em>36000</em>, <em>37800</em>, <em>39600</em>, <em>43200</em>, <em>45900</em>, <em>46800</em>, <em>49500</em>, <em>50400</em>. Required if the parameter <em>use_viewer_timezone</em> is not applicable or not set to <em>True</em>.</td>
+</tr>
+<tr>
+<td>use_viewer_timezone</td>
+<td>Boolean</td>
+<td><em>Optional</em>. Pass <em>True</em> if the schedule should be applied in the timezone of the viewer. Applicable for targeting type <em>users</em> only.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="adschedule" href="https://ads.telegram.org/docs/api#adschedule" id="adschedule"><i class="anchor-icon"></i></a>AdSchedule</h4>
+<p>This object represents the schedule for displaying the ad.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>week_hours_mask</td>
+<td>Array of Integer</td>
+<td>List of bitwise masks for displaying the ad by hours, the array of exactly 7 numbers. The first number determines the hours to display the ad on Mondays, the second – on Tuesdays, and so on. Each bit of the number determines whether to display the ad in the corresponding hour. The 0th bit corresponds to the period from 00:00 to 01:00, the 1st bit – from 01:00 to 02:00, and so on.</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>Integer</td>
+<td><em>Optional</em>. Timezone (time offset in seconds from UTC) in which the schedule will be applied.</td>
+</tr>
+<tr>
+<td>use_viewer_timezone</td>
+<td>Boolean</td>
+<td><em>Optional</em>. <em>True</em>, if the schedule will be applied in the timezone of the viewer.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="declinereason" href="https://ads.telegram.org/docs/api#declinereason" id="declinereason"><i class="anchor-icon"></i></a>DeclineReason</h4>
+<p>This object represents the reason for the advertisement rejection.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>text</td>
+<td>String</td>
+<td>Short reason for rejection.</td>
+</tr>
+<tr>
+<td>description_html</td>
+<td>String</td>
+<td>Detailed description of the reason in HTML format.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="inputadtarget" href="https://ads.telegram.org/docs/api#inputadtarget" id="inputadtarget"><i class="anchor-icon"></i></a>InputAdTarget</h4>
+<p>This object represents target settings for an ad. The Telegram Ads Platform currently supports 4 types of target settings:</p>
+<ul>
+<li><a href="https://ads.telegram.org/docs/api#inputadtargetchannels">InputAdTargetChannels</a></li>
+<li><a href="https://ads.telegram.org/docs/api#inputadtargetusers">InputAdTargetUsers</a></li>
+<li><a href="https://ads.telegram.org/docs/api#inputadtargetbots">InputAdTargetBots</a></li>
+<li><a href="https://ads.telegram.org/docs/api#inputadtargetsearch">InputAdTargetSearch</a></li>
+</ul>
+<h4><a class="anchor" name="inputadtargetchannels" href="https://ads.telegram.org/docs/api#inputadtargetchannels" id="inputadtargetchannels"><i class="anchor-icon"></i></a>InputAdTargetChannels</h4>
+<p>This object represents target settings for an ad that targets channels. Three different sets of targeting parameters are supported:</p>
+<ul>
+<li>By channel languages (up to 8 languages),</li>
+<li>By topics in one language (up to 20 topics),</li>
+<li>By specific channels (up to 100 channels).</li>
+</ul>
+<p>In addition, you can also exclude channels of certain topics, as well as specific channels. However, the number of mentioned topics (both included and excluded) should not exceed 20, and the number of channels (both included and excluded) should not exceed 100.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the target settings, must be <em>channels</em></td>
+</tr>
+<tr>
+<td>language_codes</td>
+<td>Array of String</td>
+<td><em>Optional</em>. A JSON-serialized list of 0-8 <a href="https://en.wikipedia.org/wiki/IETF_language_tag">IETF language tags</a> representing target channel languages. Use the <a href="https://ads.telegram.org/docs/api#gettargetlanguageslist">getTargetLanguagesList</a> method to get a list of available language tags. Must be empty if <em>channel_ids</em> is used, or exactly one if <em>topic_ids</em> is used.</td>
+</tr>
+<tr>
+<td>topic_ids</td>
+<td>Array of Integer</td>
+<td><em>Optional</em>. A JSON-serialized list of 0-20 target topic identifiers. Use the <a href="https://ads.telegram.org/docs/api#gettargettopicslist">getTargetTopicsList</a> method to get a list of available topics. The maximum number of topics that can be passed in both fields <em>topic_ids</em> and <em>exclude_topic_ids</em> should not exceed 20. Must be empty if <em>channel_ids</em> is used.</td>
+</tr>
+<tr>
+<td>exclude_topic_ids</td>
+<td>Array of Integer</td>
+<td><em>Optional</em>. A JSON-serialized list of target topic identifiers to exclude even if the channel matches some of your target topics. Use <a href="https://ads.telegram.org/docs/api#gettargettopicslist">getTargetTopicsList</a> method to get a list of available topics. The maximum number of topics that can be passed in both fields <em>topic_ids</em> and <em>exclude_topic_ids</em> should not exceed 20.</td>
+</tr>
+<tr>
+<td>channel_ids</td>
+<td>Array of Integer or String</td>
+<td><em>Optional</em>. A JSON-serialized list of 0-100 unique identifiers for the target channel or username of the target channel (in the format <code>@channelusername</code>). Numeric identifiers can only be used if they were previously resolved by this account via username (see <a href="https://ads.telegram.org/docs/api#resolving-channels-and-bots">Resolving channels and bots</a>). The maximum number of channels that can be passed in both fields <em>channel_ids</em> and <em>exclude_channel_ids</em> should not exceed 100. When used, <em>topic_ids</em> and <em>language_codes</em> must both be empty.</td>
+</tr>
+<tr>
+<td>exclude_channel_ids</td>
+<td>Array of Integer or String</td>
+<td><em>Optional</em>. A JSON-serialized list of 0-100 unique identifiers for the channel or username of the channel (in the format <code>@channelusername</code>) to exclude even if they match your topic selection. The maximum number of channels that can be passed in both fields <em>channel_ids</em> and <em>exclude_channel_ids</em> should not exceed 100. Numeric identifiers can only be used if they were previously resolved by this account via username (see <a href="https://ads.telegram.org/docs/api#resolving-channels-and-bots">Resolving channels and bots</a>).</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="inputadtargetusers" href="https://ads.telegram.org/docs/api#inputadtargetusers" id="inputadtargetusers"><i class="anchor-icon"></i></a>InputAdTargetUsers</h4>
+<p>This object represents target settings for an ad that targets specific user demographics. The following targeting parameters are supported:</p>
+<ul>
+<li>By countries (up to 8 countries),</li>
+<li>By user locations (up to 20 locations),</li>
+<li>By user languages (up to 8 languages),</li>
+<li>By user interests (up to 20 topics),</li>
+<li>By channel audiences (up to 100 channels),</li>
+<li>By specific users using retargeting audiences (up to 1000000 phone numbers in each),</li>
+<li>By device type.</li>
+</ul>
+<p>Additionally, you can always exclude certain topics, audiences of certain channels as well as specific users using retargeting audiences. However, the number of mentioned topics (both included and excluded) should not exceed 20, the number of mentioned channels (both included and excluded) should not exceed 100, and the number of retargeting audiences (both included and excluded) should not exceed 10.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the target settings, must be <em>users</em></td>
+</tr>
+<tr>
+<td>country_codes</td>
+<td>Array of String</td>
+<td>A JSON-serialized list of 0-8 two-letter ISO 3166-1 alpha-2 country codes. Use <a href="https://ads.telegram.org/docs/api#gettargetcountrieslist">getTargetCountriesList</a> method to get a list of available countries. Must be exactly one if <em>location_ids</em> is passed.</td>
+</tr>
+<tr>
+<td>location_ids</td>
+<td>Array of Integer</td>
+<td><em>Optional</em>. A JSON-serialized list of 0-20 locations. Use <a href="https://ads.telegram.org/docs/api#gettargetlocationslist">getTargetLocationsList</a> method to get a list of available locations. All locations from the list must belong to the same country specified in the <em>country_codes</em>.</td>
+</tr>
+<tr>
+<td>language_codes</td>
+<td>Array of String</td>
+<td><em>Optional</em>. A JSON-serialized list of 0-8 <a href="https://en.wikipedia.org/wiki/IETF_language_tag">IETF language tags</a> of the user's language. Use the <a href="https://ads.telegram.org/docs/api#gettargetlanguageslist">getTargetLanguagesList</a> method to get a list of available language tags.</td>
+</tr>
+<tr>
+<td>topic_ids</td>
+<td>Array of Integer</td>
+<td><em>Optional</em>. A JSON-serialized list of target topic identifiers. Use the <a href="https://ads.telegram.org/docs/api#gettargettopicslist">getTargetTopicsList</a> method to get a list of available topics. The maximum number of topics that can be passed in both fields <em>topic_ids</em> and <em>exclude_topic_ids</em> should not exceed 20.</td>
+</tr>
+<tr>
+<td>intersect_topics</td>
+<td>Boolean</td>
+<td><em>Optional</em>. Pass <em>True</em> to target users who have all the listed topics in their interests. When set to <em>True</em>, it ensures that the targeting is specific to users who exhibit a combination of all the specified interests, rather than any one of them.</td>
+</tr>
+<tr>
+<td>exclude_topic_ids</td>
+<td>Array of Integer</td>
+<td><em>Optional</em>. A JSON-serialized list of target topic identifiers to exclude even if the user matches some of your target topics. Use the <a href="https://ads.telegram.org/docs/api#gettargettopicslist">getTargetTopicsList</a> method to get a list of available topics. The maximum number of topics that can be passed in both fields <em>topic_ids</em> and <em>exclude_topic_ids</em> should not exceed 20.</td>
+</tr>
+<tr>
+<td>channel_ids</td>
+<td>Array of Integer or String</td>
+<td><em>Optional</em>. A JSON-serialized list of 0-100 unique identifiers for the target channel or username of the target channel (in the format <code>@channelusername</code>). Numeric identifiers can only be used if they were previously resolved by this account via username (see <a href="https://ads.telegram.org/docs/api#resolving-channels-and-bots">Resolving channels and bots</a>). The maximum number of channels that can be passed in both fields <em>channel_ids</em> and <em>exclude_channel_ids</em> should not exceed 100.</td>
+</tr>
+<tr>
+<td>exclude_channel_ids</td>
+<td>Array of Integer or String</td>
+<td><em>Optional</em>. A JSON-serialized list of 0-100 unique identifiers for the channel or username of the channel (in the format <code>@channelusername</code>) to exclude their audience even if they match your target settings. The maximum number of channels that can be passed in both fields <em>channel_ids</em> and <em>exclude_channel_ids</em> should not exceed 100. Numeric identifiers can only be used if they were previously resolved by this account via username (see <a href="https://ads.telegram.org/docs/api#resolving-channels-and-bots">Resolving channels and bots</a>).</td>
+</tr>
+<tr>
+<td>audience_ids</td>
+<td>Array of Integer</td>
+<td><em>Optional</em>. A JSON-serialized list of 0-4 unique audience identifiers. Use the <a href="https://ads.telegram.org/docs/api#getaudienceslist">getAudiencesList</a> method to get a list of audiences. The maximum number of audiences that can be passed in both fields <em>audience_ids</em> and <em>exclude_audience_ids</em> should not exceed 10.</td>
+</tr>
+<tr>
+<td>exclude_audience_ids</td>
+<td>Array of Integer</td>
+<td><em>Optional</em>. A JSON-serialized list of 0-4 unique identifiers of the audiences to exclude even if they match your target audiences. Use the <a href="https://ads.telegram.org/docs/api#getaudienceslist">getAudiencesList</a> method to get a list of audiences. The maximum number of audiences that can be passed in both fields <em>audience_ids</em> and <em>exclude_audience_ids</em> should not exceed 10.</td>
+</tr>
+<tr>
+<td>device</td>
+<td>String</td>
+<td><em>Optional</em>. The type of device, currently one of “ios”, “android”, “mobile”, “desktop”. Set this parameter to target users based on the device they use.</td>
+</tr>
+<tr>
+<td>exclude_political_channels</td>
+<td>Boolean</td>
+<td><em>Optional</em>. Pass <em>True</em> to prevent the ad from showing in political channels.</td>
+</tr>
+<tr>
+<td>political_channels_only</td>
+<td>Boolean</td>
+<td><em>Optional</em>. Pass <em>True</em> to show the ad in political channels only.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="inputadtargetbots" href="https://ads.telegram.org/docs/api#inputadtargetbots" id="inputadtargetbots"><i class="anchor-icon"></i></a>InputAdTargetBots</h4>
+<p>This object represents target settings for an ad that targets bots. Currently, the only supported targeting parameter is:</p>
+<ul>
+<li>By specific bots (up to 100 bots).</li>
+</ul>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the target settings, must be <em>bots</em></td>
+</tr>
+<tr>
+<td>bot_ids</td>
+<td>Array of Integer or String</td>
+<td><em>Optional</em>. A JSON-serialized list of 0-100 unique identifiers for the target bot or username of the target bot (in the format <code>@usernamebot</code>). Numeric identifiers can only be used if they were previously resolved by this account via username (see <a href="https://ads.telegram.org/docs/api#resolving-channels-and-bots">Resolving channels and bots</a>).</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="inputadtargetsearch" href="https://ads.telegram.org/docs/api#inputadtargetsearch" id="inputadtargetsearch"><i class="anchor-icon"></i></a>InputAdTargetSearch</h4>
+<p>This object represents target settings for an ad that targets search queries. Currently, the only supported targeting parameter is:</p>
+<ul>
+<li>By search queries (up to 10 keywords or phrases).</li>
+</ul>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the target settings, must be <em>search</em></td>
+</tr>
+<tr>
+<td>search_queries</td>
+<td>Array of String</td>
+<td>A JSON-serialized list of up to 10 keywords or phrases to target.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="adtarget" href="https://ads.telegram.org/docs/api#adtarget" id="adtarget"><i class="anchor-icon"></i></a>AdTarget</h4>
+<p>This object represents target settings for an ad. The Telegram Ads Platform currently supports 4 types of target settings:</p>
+<ul>
+<li><a href="https://ads.telegram.org/docs/api#adtargetchannels">AdTargetChannels</a></li>
+<li><a href="https://ads.telegram.org/docs/api#adtargetusers">AdTargetUsers</a></li>
+<li><a href="https://ads.telegram.org/docs/api#adtargetbots">AdTargetBots</a></li>
+<li><a href="https://ads.telegram.org/docs/api#adtargetsearch">AdTargetSearch</a></li>
+</ul>
+<h4><a class="anchor" name="adtargetchannels" href="https://ads.telegram.org/docs/api#adtargetchannels" id="adtargetchannels"><i class="anchor-icon"></i></a>AdTargetChannels</h4>
+<p>This object represents target settings for an ad that targets channels.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the target settings, must be <em>channels</em></td>
+</tr>
+<tr>
+<td>languages</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#targetlanguage">TargetLanguage</a></td>
+<td><em>Optional</em>. List of target channel languages.</td>
+</tr>
+<tr>
+<td>topics</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#targettopic">TargetTopic</a></td>
+<td><em>Optional</em>. List of target topics.</td>
+</tr>
+<tr>
+<td>exclude_topics</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#targettopic">TargetTopic</a></td>
+<td><em>Optional</em>. List of target topics to exclude even if the channel matches some of your target topics.</td>
+</tr>
+<tr>
+<td>channels</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#targetchannel">TargetChannel</a></td>
+<td><em>Optional</em>. List of target channels.</td>
+</tr>
+<tr>
+<td>exclude_channels</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#targetchannel">TargetChannel</a></td>
+<td><em>Optional</em>. List of target channels to exclude even if they match your topic selection.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="adtargetusers" href="https://ads.telegram.org/docs/api#adtargetusers" id="adtargetusers"><i class="anchor-icon"></i></a>AdTargetUsers</h4>
+<p>This object represents target settings for an ad that targets specific user demographics.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the target settings, must be <em>users</em></td>
+</tr>
+<tr>
+<td>countries</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#targetcountry">TargetCountry</a></td>
+<td>List of target countries.</td>
+</tr>
+<tr>
+<td>locations</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#targetlocation">TargetLocation</a></td>
+<td><em>Optional</em>. List of target locations.</td>
+</tr>
+<tr>
+<td>languages</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#targetlanguage">TargetLanguage</a></td>
+<td><em>Optional</em>. List of target user's languages.</td>
+</tr>
+<tr>
+<td>topics</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#targettopic">TargetTopic</a></td>
+<td><em>Optional</em>. List of target topics.</td>
+</tr>
+<tr>
+<td>intersect_topics</td>
+<td>Boolean</td>
+<td><em>Optional</em>. If <em>True</em>, the targeting is specific to users who exhibit a combination of all the specified interests, rather than any one of them.</td>
+</tr>
+<tr>
+<td>exclude_topics</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#targettopic">TargetTopic</a></td>
+<td><em>Optional</em>. List of target topics to exclude even if the user matches some of your target topics.</td>
+</tr>
+<tr>
+<td>channels</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#targetchannel">TargetChannel</a></td>
+<td><em>Optional</em>. List of target channels.</td>
+</tr>
+<tr>
+<td>exclude_channels</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#targetchannel">TargetChannel</a></td>
+<td><em>Optional</em>. List of target channels to exclude even if they match your target settings.</td>
+</tr>
+<tr>
+<td>audiences</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#audience">Audience</a></td>
+<td><em>Optional</em>. List of target audiences.</td>
+</tr>
+<tr>
+<td>exclude_audiences</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#audience">Audience</a></td>
+<td><em>Optional</em>. List of target audiences to exclude even if they match your target audiences.</td>
+</tr>
+<tr>
+<td>device</td>
+<td>String</td>
+<td><em>Optional</em>. The type of target device, currently one of “ios”, “android”, “mobile”, “desktop”.</td>
+</tr>
+<tr>
+<td>exclude_political_channels</td>
+<td>Boolean</td>
+<td><em>Optional</em>. If <em>True</em>, the advertisement is not shown in political channels.</td>
+</tr>
+<tr>
+<td>political_channels_only</td>
+<td>Boolean</td>
+<td><em>Optional</em>. If <em>True</em>, the advertisement is shown in political channels only.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="adtargetbots" href="https://ads.telegram.org/docs/api#adtargetbots" id="adtargetbots"><i class="anchor-icon"></i></a>AdTargetBots</h4>
+<p>This object represents target settings for an ad that targets bots.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the target settings, must be <em>bots</em></td>
+</tr>
+<tr>
+<td>bots</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#targetbot">TargetBot</a></td>
+<td>List of target bots.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="adtargetsearch" href="https://ads.telegram.org/docs/api#adtargetsearch" id="adtargetsearch"><i class="anchor-icon"></i></a>AdTargetSearch</h4>
+<p>This object represents target settings for an ad that targets search queries.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the target settings, must be <em>search</em></td>
+</tr>
+<tr>
+<td>search_queries</td>
+<td>Array of String</td>
+<td>List of target keywords or phrases.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="adlist" href="https://ads.telegram.org/docs/api#adlist" id="adlist"><i class="anchor-icon"></i></a>AdList</h4>
+<p>This object represents an advertisement list.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>total_count</td>
+<td>Integer</td>
+<td>Total number of advertisements in the current account.</td>
+</tr>
+<tr>
+<td>ads</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#ad">Ad</a></td>
+<td>List of requested advertisements.</td>
+</tr>
+<tr>
+<td>next_offset</td>
+<td>String</td>
+<td><em>Optional.</em> If present, represents the offset to receive the next portion of the advertisements.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="adtransactionslist" href="https://ads.telegram.org/docs/api#adtransactionslist" id="adtransactionslist"><i class="anchor-icon"></i></a>AdTransactionsList</h4>
+<p>This object represents a list of transactions related to an ad.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>total_count</td>
+<td>Integer</td>
+<td>Total number of transactions.</td>
+</tr>
+<tr>
+<td>transactions</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#adtransaction">AdTransaction</a></td>
+<td>List of requested transactions.</td>
+</tr>
+<tr>
+<td>next_offset</td>
+<td>String</td>
+<td><em>Optional.</em> If present, represents the offset to receive the next portion of the transactions.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="adtransaction" href="https://ads.telegram.org/docs/api#adtransaction" id="adtransaction"><i class="anchor-icon"></i></a>AdTransaction</h4>
+<p>This object represents an ad transaction.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>peer</td>
+<td><a href="https://ads.telegram.org/docs/api#adtransactionpeer">AdTransactionPeer</a></td>
+<td>The peer involved in the transaction.</td>
+</tr>
+<tr>
+<td>date</td>
+<td>Integer</td>
+<td>Point in time (Unix timestamp) when the transaction occurred.</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>String</td>
+<td>Currency of the account. Can be either “EUR”, “TON” or “XTR”.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Float</td>
+<td>Transaction amount in the account's currency. A negative amount represents a withdrawal from the ad budget.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="adtransactionpeer" href="https://ads.telegram.org/docs/api#adtransactionpeer" id="adtransactionpeer"><i class="anchor-icon"></i></a>AdTransactionPeer</h4>
+<p>This object represents the peer involved in an ad transaction. Currently, it can be one of</p>
+<ul>
+<li><a href="https://ads.telegram.org/docs/api#adtransactionpeeraccount">AdTransactionPeerAccount</a></li>
+<li><a href="https://ads.telegram.org/docs/api#adtransactionpeerviews">AdTransactionPeerViews</a></li>
+</ul>
+<h4><a class="anchor" name="adtransactionpeeraccount" href="https://ads.telegram.org/docs/api#adtransactionpeeraccount" id="adtransactionpeeraccount"><i class="anchor-icon"></i></a>AdTransactionPeerAccount</h4>
+<p>The peer represents the account related to the advertisement.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the peer, always “account”.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="adtransactionpeerviews" href="https://ads.telegram.org/docs/api#adtransactionpeerviews" id="adtransactionpeerviews"><i class="anchor-icon"></i></a>AdTransactionPeerViews</h4>
+<p>The peer represents the paid views of the advertisement.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the peer, always “views”.</td>
+</tr>
+<tr>
+<td>views</td>
+<td>Integer</td>
+<td>Views of the advertisement.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="adstatitem" href="https://ads.telegram.org/docs/api#adstatitem" id="adstatitem"><i class="anchor-icon"></i></a>AdStatItem</h4>
+<p>This object represents stats for an advertisement over a certain period.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>from_time</td>
+<td>Integer</td>
+<td>Start of the period, in Unix time. The start point is included in the result.</td>
+</tr>
+<tr>
+<td>to_time</td>
+<td>Integer</td>
+<td>End of the period, in Unix time. The end point is not included in the result.</td>
+</tr>
+<tr>
+<td>views</td>
+<td>Integer</td>
+<td>Views for the selected period.</td>
+</tr>
+<tr>
+<td>opens</td>
+<td>Integer</td>
+<td>Video opens for the selected period.</td>
+</tr>
+<tr>
+<td>clicks</td>
+<td>Integer</td>
+<td>Clicks for the selected period.</td>
+</tr>
+<tr>
+<td>actions</td>
+<td>Integer</td>
+<td>Number of user actions counted as conversions for the selected period.</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>String</td>
+<td>Currency of the account. Can be either “EUR”, “TON” or “XTR”.</td>
+</tr>
+<tr>
+<td>spent_budget</td>
+<td>Float</td>
+<td>Spent amount in the account's currency in the selected period.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="audience" href="https://ads.telegram.org/docs/api#audience" id="audience"><i class="anchor-icon"></i></a>Audience</h4>
+<p>This object represents an audience.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>audience_id</td>
+<td>Integer</td>
+<td>Unique identifier of the audience.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Audience title.</td>
+</tr>
+<tr>
+<td>size</td>
+<td>Integer</td>
+<td>Audience size. This is the <strong>approximate</strong> number of phone numbers included in the audience. 0 means an empty audience, 50 means audience with less than 100 phone numbers.</td>
+</tr>
+<tr>
+<td>ads_count</td>
+<td>Integer</td>
+<td>Number of advertisements that target this audience.</td>
+</tr>
+<tr>
+<td>created_date</td>
+<td>Integer</td>
+<td>Point in time (Unix timestamp) when the audience was created.</td>
+</tr>
+<tr>
+<td>updated_date</td>
+<td>Integer</td>
+<td>Point in time (Unix timestamp) when the audience was updated.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="audienceslist" href="https://ads.telegram.org/docs/api#audienceslist" id="audienceslist"><i class="anchor-icon"></i></a>AudiencesList</h4>
+<p>This object represents an audience list.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>total_count</td>
+<td>Integer</td>
+<td>Total number of audiences in the current account.</td>
+</tr>
+<tr>
+<td>audiences</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#audience">Audience</a></td>
+<td>List of requested audiences.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="pixel" href="https://ads.telegram.org/docs/api#pixel" id="pixel"><i class="anchor-icon"></i></a>Pixel</h4>
+<p>This object represents a Pixel Tag.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pixel_id</td>
+<td>String</td>
+<td>Unique identifier of the pixel.</td>
+</tr>
+<tr>
+<td>code_snippet</td>
+<td>String</td>
+<td>The base code snippet that must be placed before the <code>&lt;/head&gt;</code> HTML tag of all pages on your website.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="pixelevent" href="https://ads.telegram.org/docs/api#pixelevent" id="pixelevent"><i class="anchor-icon"></i></a>PixelEvent</h4>
+<p>This object represents a pixel event.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td>String</td>
+<td>Unique identifier of the pixel event.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>Event title.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Type of the event. Can be either “page_view”, “landing_view”, “add_to_cart”, “add_to_wishlist”, “customize_product”, “initiate_checkout”, “add_payment_info”, “purchase”, “contact”, “lead”, “schedule”, “complete_registration”, “submit_application”, “start_trial”, “subscribe”, “view_content”, “search”, “find_location”, “donate”, “custom”.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>Status of the pixel event, can be either “inactive” or “active”.</td>
+</tr>
+<tr>
+<td>ads_count</td>
+<td>Integer</td>
+<td>Number of advertisements that have used this pixel event as a conversion event.</td>
+</tr>
+<tr>
+<td>created_date</td>
+<td>Integer</td>
+<td>Point in time (Unix timestamp) when the pixel event was created.</td>
+</tr>
+<tr>
+<td>last_triggered_date</td>
+<td>Integer</td>
+<td><em>Optional.</em> Point in time (Unix timestamp) when the pixel event was last triggered. Omitted if the event has never been triggered or was last triggered more than 7 days ago.</td>
+</tr>
+<tr>
+<td>auto_created</td>
+<td>Boolean</td>
+<td><em>Optional.</em> <em>True</em> if the pixel event was automatically created. You can't edit or delete such an event.</td>
+</tr>
+<tr>
+<td>code_snippet</td>
+<td>String</td>
+<td><em>Optional.</em> The event code snippet that must be placed in the elements of your website where you want to track customer actions. Omitted if this pixel event does not require additional code and the base code alone is sufficient.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="pixeleventslist" href="https://ads.telegram.org/docs/api#pixeleventslist" id="pixeleventslist"><i class="anchor-icon"></i></a>PixelEventsList</h4>
+<p>This object represents a list of pixel events.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>total_count</td>
+<td>Integer</td>
+<td>Total number of pixel events in the current account.</td>
+</tr>
+<tr>
+<td>events</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#pixelevent">PixelEvent</a></td>
+<td>List of requested pixel events.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="targetlanguage" href="https://ads.telegram.org/docs/api#targetlanguage" id="targetlanguage"><i class="anchor-icon"></i></a>TargetLanguage</h4>
+<p>This object represents an available target language.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>language_code</td>
+<td>String</td>
+<td><a href="https://en.wikipedia.org/wiki/IETF_language_tag">IETF language tag</a> of the language.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of the language.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="targettopic" href="https://ads.telegram.org/docs/api#targettopic" id="targettopic"><i class="anchor-icon"></i></a>TargetTopic</h4>
+<p>This object represents an available target topic.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>topic_id</td>
+<td>Integer</td>
+<td>Topic identifier.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of the topic.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="targetcountry" href="https://ads.telegram.org/docs/api#targetcountry" id="targetcountry"><i class="anchor-icon"></i></a>TargetCountry</h4>
+<p>This object represents an available target country.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>country_code</td>
+<td>String</td>
+<td>Two-letter ISO 3166-1 alpha-2 country code.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of the country.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="targetlocation" href="https://ads.telegram.org/docs/api#targetlocation" id="targetlocation"><i class="anchor-icon"></i></a>TargetLocation</h4>
+<p>This object represents an available target location (i.e., city, populated area, district, etc).</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>location_id</td>
+<td>Integer</td>
+<td>Location identifier.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of the location.</td>
+</tr>
+<tr>
+<td>country_code</td>
+<td>String</td>
+<td><em>Optional.</em> Two-letter ISO 3166-1 alpha-2 country code of location.</td>
+</tr>
+<tr>
+<td>region</td>
+<td>String</td>
+<td><em>Optional.</em> Region of the location.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="targetlocationlist" href="https://ads.telegram.org/docs/api#targetlocationlist" id="targetlocationlist"><i class="anchor-icon"></i></a>TargetLocationList</h4>
+<p>This object represents a location list.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>total_count</td>
+<td>Integer</td>
+<td>Total number of locations.</td>
+</tr>
+<tr>
+<td>locations</td>
+<td>Array of <a href="https://ads.telegram.org/docs/api#targetlocation">TargetLocation</a></td>
+<td>List of locations.</td>
+</tr>
+<tr>
+<td>next_offset</td>
+<td>String</td>
+<td><em>Optional.</em> If string is not empty, the offset to receive next portion of the locations.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="targetchannel" href="https://ads.telegram.org/docs/api#targetchannel" id="targetchannel"><i class="anchor-icon"></i></a>TargetChannel</h4>
+<p>This object represents a target channel.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>channel_id</td>
+<td>Integer</td>
+<td>Unique identifier for this channel. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td><em>Optional</em>. Title of the channel.</td>
+</tr>
+<tr>
+<td>username</td>
+<td>String</td>
+<td><em>Optional</em>. Username of the channel, if available.</td>
+</tr>
+<tr>
+<td>photo_url</td>
+<td>String</td>
+<td><em>Optional</em>. URL of the channel’s photo. The photo can be in JPEG or SVG formats.</td>
+</tr>
+</tbody>
+</table>
+<h4><a class="anchor" name="targetbot" href="https://ads.telegram.org/docs/api#targetbot" id="targetbot"><i class="anchor-icon"></i></a>TargetBot</h4>
+<p>This object represents a target bot.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bot_id</td>
+<td>Integer</td>
+<td>Unique identifier for this bot. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>String</td>
+<td><em>Optional</em>. Title of the bot.</td>
+</tr>
+<tr>
+<td>username</td>
+<td>String</td>
+<td><em>Optional</em>. Username of the bot, if available.</td>
+</tr>
+<tr>
+<td>photo_url</td>
+<td>String</td>
+<td><em>Optional</em>. URL of the bot’s photo. The photo can be in JPEG or SVG formats.</td>
+</tr>
+</tbody>
+</table>
+</div>
+  
+</div></section>
+</div>
+<div class="popup-container alert-popup-container aj_popup hide"><section class="pr-layer-popup pr-layer-delete-ad popup-no-close"><h3 class="pr-layer-header">Turn off ad blocker</h3><p class="pr-layer-text">You appear to be using an ad blocker that may prevent pages on the Telegram Ad Platform from working as expected.<br><br>Please turn off your ad blocker or add <b>ads.telegram.org</b> as an exception to manage your promoted messages.</p><div class="popup-buttons"><div class="popup-button popup-cancel-btn">Close</div></div></section></div></div>
+    <script src="./Telegram Ads_files/jquery.min.js.download"></script>
+    <script src="./Telegram Ads_files/bootstrap.min.js.download"></script>
+    <script src="./Telegram Ads_files/main-aj.js.download"></script>
+    <script src="./Telegram Ads_files/main.js.download"></script>
+<script src="./Telegram Ads_files/widget-frame.js.download"></script>
+<script src="./Telegram Ads_files/promote.js.download"></script>
+<script src="./Telegram Ads_files/jquery-ui.min.js.download"></script>
+<script src="./Telegram Ads_files/jquery-ex.js.download"></script>
+<script src="./Telegram Ads_files/tchart.min.js.download"></script>
+<script src="./Telegram Ads_files/health.js.download"></script>
+<script src="./Telegram Ads_files/tgsticker.js.download"></script>
+<script src="./Telegram Ads_files/promote-theme.js.download"></script>
+
+    <script>ajInit({"version":1160,"apiUrl":"\/api?hash=a82e93137d5d4c0ee1","state":{"themeCookie":"stel_pr_theme"}});</script>
+    <script id="aj_script">l.add({"WEB_AB_WARNING_HEADER":"Turn off ad blocker","WEB_POPUP_CLOSE_BTN":"Close","WEB_AB_WARNING_TEXT":"You appear to be using an ad blocker that may prevent pages on the Telegram Ad Platform from working as expected.<br\/><br\/>Please turn off your ad blocker or add <b>ads.telegram.org<\/b> as an exception to manage your promoted messages."});
+window.initDevPageNav&&initDevPageNav();
+window.enableInlineVideo&&$('video').each(function(){enableInlineVideo(this)});
+Ads.init();
+if (window.PrThemeToggle) { PrThemeToggle.init(); }
+</script>
+    <script>Aj.pageLoaded();</script>
+    
+  
+
+
+</body></html>
