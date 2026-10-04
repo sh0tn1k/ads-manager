@@ -185,7 +185,8 @@ def list_blocks(proposals: list[Proposal], cur: str = "TON") -> list:
             rows.append([str(i), what, money(p.reserved_amount, cur), _ts(p.expires_ts)])
         blocks.append(table(["#", "Связка", "Резерв", "Истекает"], rows))
         blocks.append(button_row([(f"Открыть {i}", f"prop:view:{p.proposal_id}", PRIMARY) for i, p in enumerate(proposals, 1)][:8]))
-    blocks.append(button_row([("Тестовое предложение", "agent:test"), ("Бюджет", "agent:budget"), ("Меню", "nav:menu", LINK)]))
+    blocks.append(button_row([("Подобрать предложения", "agent:propose", SUCCESS), ("Тестовое предложение", "agent:test")]))
+    blocks.append(button_row([("Бюджет", "agent:budget"), ("Меню", "nav:menu", LINK)]))
     return blocks
 
 
@@ -213,6 +214,24 @@ async def cmd_propose_test(event: Event, agent: AgentServices) -> None:
     summary = f"Создано тестовых предложений: {len(created)}."
     if errors:
         summary += " Не создано: " + "; ".join(code_text(e) if e in CODE_RU else e for e in errors)
+    await reply_rich(event, blocks[0], quote(summary), *blocks[1:])
+
+
+@router.message(Command("propose"))
+@router.callback_query(F.data == "agent:propose")
+async def cmd_propose(event: Event, agent: AgentServices) -> None:
+    """Run the proposal cycle: at most MAX_PENDING_PROPOSALS proposals or "предложений нет" with a reason."""
+    await ack(event, "Подбираю…")
+    user_id = getattr(event.from_user, "id", None)
+    try:
+        result = await agent.cycle.run(user_id)
+    except (AdsApiError, AdsTransportError) as exc:
+        await show_error(event, exc)
+        return
+    summary = result.message_ru()
+    if result.errors:
+        summary += " Ошибки: " + "; ".join(result.errors[:5])
+    blocks = list_blocks(agent.proposals.pending(), agent.config.currency)
     await reply_rich(event, blocks[0], quote(summary), *blocks[1:])
 
 

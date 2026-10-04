@@ -62,6 +62,7 @@ async def _set_commands(bot: Bot) -> None:
             BotCommand(command="account", description="Текущий аккаунт"),
             BotCommand(command="budget", description="Баланс и резервы агента"),
             BotCommand(command="proposals", description="Предложения агента"),
+            BotCommand(command="propose", description="Подобрать новые предложения"),
             BotCommand(command="propose_test", description="Тестовые предложения"),
             BotCommand(command="cancel", description="Отменить мастер"),
         ]
