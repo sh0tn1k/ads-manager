@@ -29,3 +29,14 @@ def test_agent_never_imports_bot():
 def test_ads_api_never_imports_agent_or_bot():
     for p in (ROOT / "ads_api").rglob("*.py"):
         assert not any(n.split(".")[0] in {"agent", "bot", "aiogram"} for n in _imports(p)), p
+
+
+def test_model_planner_sim_are_pure():
+    """Model/planner/simulator never touch the API client, executor or bot."""
+    banned = ("ads_api.client", "agent.executor", "bot", "aiogram", "httpx")
+    for pkg in ("model", "planner", "sim"):
+        for p in (ROOT / "agent" / pkg).rglob("*.py"):
+            if p.name == "balance.py":  # phase 1: reads the account (read-only) for the free balance
+                continue
+            names = _imports(p)
+            assert not any(n == b or n.startswith(b + ".") for n in names for b in banned), p
