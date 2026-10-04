@@ -61,6 +61,8 @@ async def _set_commands(bot: Bot) -> None:
             BotCommand(command="create_ad", description="Создать объявление"),
             BotCommand(command="account", description="Текущий аккаунт"),
             BotCommand(command="budget", description="Баланс и резервы агента"),
+            BotCommand(command="proposals", description="Предложения агента"),
+            BotCommand(command="propose_test", description="Тестовые предложения"),
             BotCommand(command="cancel", description="Отменить мастер"),
         ]
     )
@@ -168,14 +170,20 @@ async def run() -> None:
     stop = asyncio.Event()
     watcher = RuleWatcher(ads, bot, rule_store)
     watch_task = asyncio.create_task(watcher.run(stop), name="autostop-watcher")
+    agent_task = asyncio.create_task(agent.proposals.run_background(stop), name="agent-proposals")
     logger.info("Bot starting (Ads API %s)", ads.base_url)
     try:
         await dp.start_polling(bot, allowed_updates=["message", "callback_query"])
     finally:
         stop.set()
         watch_task.cancel()
+        agent_task.cancel()
         try:
             await watch_task
+        except asyncio.CancelledError:
+            pass
+        try:
+            await agent_task
         except asyncio.CancelledError:
             pass
         await ads.aclose()

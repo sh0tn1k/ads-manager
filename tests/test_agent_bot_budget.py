@@ -25,15 +25,22 @@ def _message(text: str) -> Message:
 
 
 def _texts(payload) -> str:
-    out = []
-    for block in payload.blocks:
-        text = getattr(block, "text", None)
-        if isinstance(text, str):
-            out.append(text)
-        for row in getattr(block, "cells", None) or []:
-            out.extend(str(c.text) for c in row)
-        for btn in getattr(block, "buttons", None) or []:
-            out.append(btn.text)
+    out: list[str] = []
+
+    def walk(blocks) -> None:
+        for block in blocks or []:
+            text = getattr(block, "text", None)
+            if isinstance(text, str):
+                out.append(text)
+            for row in getattr(block, "cells", None) or []:
+                out.extend(str(c.text) for c in row)
+            for btn in getattr(block, "buttons", None) or []:
+                out.append(btn.text)
+            for item in getattr(block, "items", None) or []:
+                walk(getattr(item, "blocks", None))
+            walk(getattr(block, "blocks", None))
+
+    walk(payload.blocks)
     return "\n".join(out)
 
 

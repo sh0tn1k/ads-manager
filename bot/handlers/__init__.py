@@ -8,6 +8,7 @@ from bot.handlers.library import router as library_router
 from bot.handlers.media import router as media_router
 from bot.handlers.menu import router as menu_router
 from bot.handlers.pixels import router as pixels_router
+from bot.handlers.proposals import router as proposals_router
 from bot.handlers.rules import router as rules_router
 from bot.handlers.stats import router as stats_router
 from bot.handlers.targeting import router as targeting_router
@@ -20,6 +21,7 @@ routers = (
     ab_router,
     billing_router,
     budget_router,
+    proposals_router,
     audiences_router,
     pixels_router,
     rules_router,

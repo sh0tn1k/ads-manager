@@ -74,6 +74,12 @@ def nav_blocks() -> list[InputRichBlockButtons]:
                 ("Помощь", "nav:help", LINK),
             ]
         ),
+        button_row(
+            [
+                ("Предложения", "nav:proposals", PRIMARY),
+                ("Бюджет агента", "agent:budget"),
+            ]
+        ),
     ]
 
 
