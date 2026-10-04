@@ -1,0 +1,17 @@
+{
+  "id": "msg_fixture_research_2",
+  "type": "message",
+  "role": "assistant",
+  "model": "fixture-model",
+  "content": [
+    {"type": "tool_use", "id": "toolu_fixture_2", "name": "submit_research",
+     "input": {
+       "search_queries": [{"query": "north london derby", "confidence": 0.7, "sources": ["https://www.premierleague.com/fixtures"]}],
+       "geo_priors": [{"country_code": "GB", "direction": "higher", "confidence": 0.5, "sources": ["https://www.premierleague.com/fixtures"]}],
+       "topic_priors": [],
+       "events": [{"date": "2026-10-18", "title": "North London derby", "confidence": 0.8, "sources": ["https://www.premierleague.com/fixtures"]}]
+     }}
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 2500, "output_tokens": 400, "cache_read_input_tokens": 1500, "cache_creation_input_tokens": 0}
+}

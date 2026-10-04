@@ -1,0 +1,15 @@
+{
+  "id": "msg_fixture_research_1",
+  "type": "message",
+  "role": "assistant",
+  "model": "fixture-model",
+  "content": [
+    {"type": "text", "text": "Searching for upcoming fixtures."},
+    {"type": "server_tool_use", "id": "srvtoolu_fixture_1", "name": "web_search", "input": {"query": "premier league fixtures october 2026"}},
+    {"type": "web_search_tool_result", "tool_use_id": "srvtoolu_fixture_1", "content": [
+      {"type": "web_search_result", "url": "https://www.premierleague.com/fixtures", "title": "Fixtures", "encrypted_content": "PLACEHOLDER", "page_age": "October 1, 2026"}
+    ]}
+  ],
+  "stop_reason": "pause_turn",
+  "usage": {"input_tokens": 2000, "output_tokens": 100, "cache_read_input_tokens": 0, "cache_creation_input_tokens": 1500, "server_tool_use": {"web_search_requests": 1}}
+}

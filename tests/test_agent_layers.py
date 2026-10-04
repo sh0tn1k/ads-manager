@@ -47,3 +47,11 @@ def test_candidates_never_call_the_api_or_executor_directly():
     for p in (ROOT / "agent" / "candidates").rglob("*.py"):
         names = _imports(p)
         assert not any(n == b or n.startswith(b + ".") for n in names for b in banned), p
+
+
+def test_llm_layer_has_no_path_to_ads_api_or_executor():
+    """The LLM never sees the Ads token and cannot act: no imports of the API client, executor or proposals writes."""
+    banned = ("ads_api", "agent.executor", "agent.proposals", "agent.sync", "bot", "aiogram")
+    for p in (ROOT / "agent" / "llm").rglob("*.py"):
+        names = _imports(p)
+        assert not any(n == b or n.startswith(b + ".") for n in names for b in banned), p
