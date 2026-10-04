@@ -126,7 +126,8 @@ def factor_rows_from_store(store: Any, *, cpm_bucket_width: float = 0.05) -> lis
                 cpm_bid=float(row["cpm"]),
                 ad_id=int(row["ad_id"]),
                 tracks_joins=(row["action_type"] == "join"),
-                meta={"status": row["status"], "text": row["text"], "target": target, "placement": row["placement"]},
+                meta={"status": row["status"], "text": row["text"], "target": target, "placement": row["placement"],
+                      "promote_url": row["promote_url"], "created_date": row["created_date"]},
             )
         )
     return rows

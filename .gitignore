@@ -14,6 +14,7 @@ build/
 *.db
 data/*
 !data/.gitkeep
+!data/external_placements.example.csv
 .idea/
 .vscode/
 Telegram Ads_files/

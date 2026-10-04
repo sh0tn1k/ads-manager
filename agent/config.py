@@ -91,6 +91,13 @@ class AgentConfig(BaseSettings):
     # Volume constant used in scoring while real volume is unknown (section 7.2/7.3).
     default_volume_views: float = Field(default=10000.0, validation_alias=AliasChoices("AGENT_DEFAULT_VOLUME_VIEWS", "default_volume_views"))
 
+    # Candidate generation (phase 4). Not in the plan; documented in docs/agent-questions.md.
+    base_cpm: float | None = Field(default=None, validation_alias=AliasChoices("AGENT_BASE_CPM", "base_cpm"))
+    history_top_n: int = Field(default=3, validation_alias=AliasChoices("AGENT_HISTORY_TOP_N", "history_top_n"))
+    ledger_top_n: int = Field(default=5, validation_alias=AliasChoices("AGENT_LEDGER_TOP_N", "ledger_top_n"))
+    ledger_min_joins: int = Field(default=1, validation_alias=AliasChoices("AGENT_LEDGER_MIN_JOINS", "ledger_min_joins"))
+    add_control: bool = Field(default=True, validation_alias=AliasChoices("AGENT_ADD_CONTROL", "add_control"))
+
     # --- files ---
     geo_pool_path: str = Field(default="config/geo_pool.yaml", validation_alias=AliasChoices("AGENT_GEO_POOL_PATH", "geo_pool_path"))
     external_placements_path: str = Field(
@@ -117,6 +124,7 @@ class AgentConfig(BaseSettings):
         "max_active_experiments",
         "first_live_max_budget",
         "llm_daily_usd_cap",
+        "base_cpm",
         "llm_model",
         "anthropic_api_key",
         "llm_price_input_per_mtok",

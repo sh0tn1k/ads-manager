@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from ads_api.client import AdsClient
+from agent.candidates.cycle import ProposalCycle
 from agent.clock import Clock, system_clock
 from agent.config import AgentConfig
 from agent.executor import Executor
@@ -22,6 +23,7 @@ class AgentServices:
     sync: SyncService
     balance: FreeBalanceProvider
     proposals: ProposalService
+    cycle: ProposalCycle
 
     @classmethod
     def build(
@@ -45,10 +47,12 @@ class AgentServices:
             dictionaries=dictionaries.get if dictionaries else None,
             clock=clock,
         )
+        proposals = ProposalService(store, config, balance, executor, clock)
         return cls(
             config=config,
             store=store,
             sync=SyncService(ads, store, clock),
             balance=balance,
-            proposals=ProposalService(store, config, balance, executor, clock),
+            proposals=proposals,
+            cycle=ProposalCycle(store, config, balance, proposals, clock),
         )
