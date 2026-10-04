@@ -77,6 +77,8 @@ class AgentConfig(BaseSettings):
     halving_eta: int = Field(default=3, validation_alias=AliasChoices("AGENT_HALVING_ETA", "halving_eta"))
     kill_if_p_below: float = Field(default=0.05, validation_alias=AliasChoices("AGENT_KILL_IF_P_BELOW", "kill_if_p_below"))
     promote_if_p_above: float = Field(default=0.9, validation_alias=AliasChoices("AGENT_PROMOTE_IF_P_ABOVE", "promote_if_p_above"))
+    # Not in the plan: width of the CPM bucket used in the dedup fingerprint (section 9).
+    fingerprint_cpm_bucket: float = Field(default=0.05, validation_alias=AliasChoices("AGENT_FINGERPRINT_CPM_BUCKET", "fingerprint_cpm_bucket"))
     dedup_days: int = Field(default=14, validation_alias=AliasChoices("AGENT_DEDUP_DAYS", "dedup_days"))
     cpm_step: float = Field(default=0.01, validation_alias=AliasChoices("AGENT_CPM_STEP", "cpm_step"))
     # Priors (section 7.1): CTR 1.25% with ~1000 views, CVR 6.7% with ~50 clicks.
