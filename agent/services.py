@@ -9,6 +9,7 @@ from agent.candidates.cycle import ProposalCycle
 from agent.clock import Clock, system_clock
 from agent.config import AgentConfig
 from agent.executor import Executor
+from agent.llm.service import LLMService
 from agent.planner.balance import FreeBalanceProvider
 from agent.proposals.service import ProposalService
 from agent.store import Store
@@ -24,6 +25,7 @@ class AgentServices:
     balance: FreeBalanceProvider
     proposals: ProposalService
     cycle: ProposalCycle
+    llm: LLMService
 
     @classmethod
     def build(
@@ -34,6 +36,7 @@ class AgentServices:
         store: Store | None = None,
         clock: Clock = system_clock,
         validate_dictionaries: bool = True,
+        llm: LLMService | None = None,
     ) -> "AgentServices":
         config = config or AgentConfig()
         store = store or Store.open(config.db_path)
@@ -48,11 +51,13 @@ class AgentServices:
             clock=clock,
         )
         proposals = ProposalService(store, config, balance, executor, clock)
+        llm = llm or LLMService.from_config(store, config, clock)
         return cls(
             config=config,
             store=store,
             sync=SyncService(ads, store, clock),
             balance=balance,
             proposals=proposals,
-            cycle=ProposalCycle(store, config, balance, proposals, clock),
+            cycle=ProposalCycle(store, config, balance, proposals, clock, llm=llm),
+            llm=llm,
         )

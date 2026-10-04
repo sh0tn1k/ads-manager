@@ -1,0 +1,15 @@
+{
+  "id": "msg_fixture_creatives",
+  "type": "message",
+  "role": "assistant",
+  "model": "fixture-model",
+  "content": [
+    {"type": "tool_use", "id": "toolu_fixture_1", "name": "submit_creatives",
+     "input": {"variants": [
+       {"angle": "derby_day", "text": "Derby day is coming: line-ups, stats and live updates in one channel.", "length": "medium", "cta": "Join"},
+       {"angle": "transfers", "text": "All Premier League transfers first.", "length": "short", "cta": "Follow"}
+     ]}}
+  ],
+  "stop_reason": "tool_use",
+  "usage": {"input_tokens": 1200, "output_tokens": 300, "cache_read_input_tokens": 1000, "cache_creation_input_tokens": 0}
+}

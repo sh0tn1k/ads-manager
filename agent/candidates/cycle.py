@@ -17,10 +17,13 @@ from agent.candidates.grid import grid_candidates
 from agent.candidates.history import base_candidate, history_candidates, rank_history
 from agent.candidates.inputs import InputError, load_creatives, load_geo_pool, load_ledger
 from agent.candidates.ledger import ledger_candidates
+from agent.candidates.llm import explanation_facts, llm_creatives, llm_research
 from agent.candidates.scoring import Scored, score_candidates, select
 from agent.canonical import sha256_hex
 from agent.clock import Clock, system_clock
 from agent.config import AgentConfig
+from agent.llm.service import REASON_RU as LLM_REASON_RU
+from agent.llm.service import LLMService
 from agent.model.factors import factor_rows_from_store
 from agent.planner.balance import FreeBalanceProvider
 from agent.planner.budget import REASON_RU as PLANNER_REASON_RU
@@ -57,6 +60,21 @@ NOTE_RU = {
 }
 
 
+NOTE_PREFIX_RU = {
+    "llm_disabled": "LLM выключен",
+    "llm_creatives_failed": "LLM-креативы не получены",
+    "llm_research_failed": "LLM-ресерч не получен",
+    "llm_explain_failed": "LLM-пояснение не получено, использован шаблон",
+}
+
+
+def _note_ru(note: str) -> str:
+    key, sep, rest = note.partition(": ")
+    if sep and key in NOTE_PREFIX_RU:
+        return f"{NOTE_PREFIX_RU[key]} ({rest})"
+    return NOTE_RU.get(note, note)
+
+
 @dataclass
 class CycleResult:
     created: list[Proposal] = field(default_factory=list)
@@ -76,7 +94,7 @@ class CycleResult:
             reasons = "; ".join(REASON_RU.get(r, r) for r in self.reasons) or "причина неизвестна"
             text = f"Предложений нет: {reasons}."
         if self.notes:
-            text += " Замечания: " + "; ".join(NOTE_RU.get(n, n) for n in self.notes) + "."
+            text += " Замечания: " + "; ".join(_note_ru(n) for n in self.notes) + "."
         return text
 
 
@@ -88,7 +106,9 @@ class ProposalCycle:
         balance: FreeBalanceProvider,
         proposals: ProposalService,
         clock: Clock = system_clock,
+        llm: LLMService | None = None,
     ) -> None:
+        self.llm = llm
         self.store = store
         self.config = config
         self.balance = balance
@@ -125,7 +145,7 @@ class ProposalCycle:
             return CycleResult(reasons=plan.reasons)
         result = CycleResult()
         try:
-            candidates, control = self._generate(result)
+            candidates, control, prior_shifts = await self._generate(result)
         except InputError as exc:
             return CycleResult(reasons=["input_error"], errors=[str(exc)])
         result.stats["generated"] = len(candidates)
@@ -146,6 +166,7 @@ class ProposalCycle:
         scored = score_candidates(
             pool, rows, model_kwargs=self._model_kwargs(), hurdle=float(c.hurdle_cpa_ton), stage_cost=budget,
             volume_views=c.default_volume_views, samples=c.mc_samples, cpm_bucket_width=c.fingerprint_cpm_bucket, rng=rng,
+            extra_ctr_shifts=prior_shifts,
         )
         control_scored = scored[-1] if control is not None else None
         tests = scored[:-1] if control is not None else scored
@@ -179,7 +200,8 @@ class ProposalCycle:
             result.reasons.append("below_threshold" if below == len(tests) else "not_selected")
             return result
         for s in chosen:
-            created = await self.proposals.create(self._payload(s, budget, now))
+            rationale = await self._explain(s, result)
+            created = await self.proposals.create(self._payload(s, budget, now, rationale))
             if created.proposal is not None:
                 result.created.append(created.proposal)
             else:
@@ -217,7 +239,28 @@ class ProposalCycle:
         _, dropped = dedup([control], pending, width=self.config.fingerprint_cpm_bucket)
         return dropped == 0
 
-    def _generate(self, result: CycleResult) -> tuple[list[Candidate], Candidate | None]:
+    def _llm_on(self, result: CycleResult) -> bool:
+        if self.llm is None:
+            return False
+        reasons = self.llm.disabled_reasons()
+        if reasons:
+            note = "llm_disabled: " + "; ".join(LLM_REASON_RU.get(r, r) for r in reasons)
+            if note not in result.notes:
+                result.notes.append(note)
+            return False
+        return True
+
+    async def _explain(self, s: Scored, result: CycleResult) -> str:
+        if not self._llm_on(result):
+            return s.candidate.rationale_ru
+        assert self.llm is not None
+        res = await self.llm.explain_proposal(facts=explanation_facts(s.candidate, s.factors))
+        if not res.ok:
+            result.notes.append("llm_explain_failed: " + res.reason_ru())
+            return s.candidate.rationale_ru
+        return res.output.rationale_ru
+
+    async def _generate(self, result: CycleResult) -> tuple[list[Candidate], Candidate | None, dict]:
         c = self.config
         url = c.promote_url_allowlist[0]
         rows = self._rows()
@@ -238,12 +281,27 @@ class ProposalCycle:
             if text and text not in seen and r.factors.get("angle"):
                 creatives.append(Creative(angle=r.factors["angle"], text=text))
                 seen.add(text)
-        if not creatives:
-            result.notes.append("no_creatives")
         base_cpm = round(ranked[0].cpm_bid, 2) if ranked else (
             geo_pool.base_cpm if geo_pool and geo_pool.base_cpm is not None else c.base_cpm
         )
         out: list[Candidate] = []
+        prior_shifts: dict = {}
+        if self._llm_on(result):
+            assert self.llm is not None
+            extra, err = await llm_creatives(self.llm, rows, url)
+            if err:
+                result.notes.append("llm_creatives_failed: " + err)
+            creatives += [cr for cr in extra if cr.text not in seen]
+            allowed_geo = sorted({code for codes in geo_pool.groups.values() for code in codes}) if geo_pool else None
+            research, prior_shifts, err = await llm_research(
+                self.llm, rows, channel=c.channel_description or url, allowed_geo=allowed_geo, base_cpm=base_cpm,
+                promote_url=url,
+            )
+            if err:
+                result.notes.append("llm_research_failed: " + err)
+            out += research
+        if not creatives:
+            result.notes.append("no_creatives")
         out += history_candidates(
             rows, promote_url=url, creatives=creatives, geo_pool=geo_pool, cpm_step=max(c.cpm_step, c.fingerprint_cpm_bucket), top_n=c.history_top_n,
         )
@@ -259,9 +317,9 @@ class ProposalCycle:
                     top_n=c.ledger_top_n, min_joins=c.ledger_min_joins,
                 )
         control = base_candidate(ranked[0], url) if ranked else None
-        return out, control
+        return out, control, prior_shifts
 
-    def _payload(self, s: Scored, budget: float, now: int) -> ProposalPayload:
+    def _payload(self, s: Scored, budget: float, now: int, rationale: str | None = None) -> ProposalPayload:
         cand = s.candidate
         c = self.config
         ad = AdSpec(
@@ -279,7 +337,8 @@ class ProposalCycle:
             stop_rules=StopRules(
                 min_views=c.stage1_min_views, kill_if_p_below=c.kill_if_p_below, promote_if_p_above=c.promote_if_p_above,
             ),
-            rationale_ru=cand.rationale_ru,
+            rationale_ru=rationale or cand.rationale_ru,
+            sources=list(cand.sources),
             model_version=MODEL_VERSION,
             data_cutoff_ts=now,
         )

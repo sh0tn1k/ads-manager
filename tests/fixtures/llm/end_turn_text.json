@@ -1,0 +1,9 @@
+{
+  "id": "msg_fixture_text",
+  "type": "message",
+  "role": "assistant",
+  "model": "fixture-model",
+  "content": [{"type": "text", "text": "Here are some ideas in prose instead of a tool call."}],
+  "stop_reason": "end_turn",
+  "usage": {"input_tokens": 100, "output_tokens": 20}
+}

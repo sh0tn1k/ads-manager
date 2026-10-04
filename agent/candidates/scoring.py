@@ -37,8 +37,9 @@ def score_candidates(
     samples: int,
     cpm_bucket_width: float,
     rng: np.random.Generator,
+    extra_ctr_shifts: dict | None = None,
 ) -> list[Scored]:
-    ctr_shifts: dict = {}
+    ctr_shifts: dict = dict(extra_ctr_shifts or {})
     cvr_shifts: dict = {}
     for c in candidates:
         ctr_shifts.update(c.ctr_shifts)

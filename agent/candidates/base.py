@@ -34,6 +34,7 @@ class Candidate:
     base_ad_id: int | None = None
     ctr_shifts: dict[tuple[str, str], float] = field(default_factory=dict)
     cvr_shifts: dict[tuple[str, str], float] = field(default_factory=dict)
+    sources: list[str] = field(default_factory=list)
 
     def factors(self, cpm_bucket_width: float) -> dict[str, str]:
         return ad_factors(

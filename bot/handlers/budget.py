@@ -6,6 +6,7 @@ from aiogram import F, Router
 from aiogram.filters import Command
 
 from ads_api.errors import AdsApiError, AdsTransportError
+from agent.llm.service import REASON_RU as LLM_REASON_RU
 from agent.planner.balance import BalanceView
 from agent.services import AgentServices
 from bot.formatters import money
@@ -34,7 +35,17 @@ def budget_rows(view: BalanceView) -> list[list[str]]:
     ]
 
 
-def budget_blocks(view: BalanceView, *, dry_run: bool, synced: str | None = None):
+def llm_line(agent: AgentServices | None) -> str | None:
+    llm = getattr(agent, "llm", None)
+    if llm is None:
+        return None
+    reasons = llm.disabled_reasons()
+    if reasons:
+        return "LLM выключен: " + "; ".join(LLM_REASON_RU.get(r, r) for r in reasons) + "."
+    return f"LLM за 24 ч: ${llm.spent_today():.2f} из ${llm.config.llm_daily_usd_cap:.2f}."
+
+
+def budget_blocks(view: BalanceView, *, dry_run: bool, synced: str | None = None, llm: str | None = None):
     mode = "тестовый (ADS_DRY_RUN=1): объявления не создаются" if dry_run else "боевой"
     return [
         heading("Бюджет агента"),
@@ -43,6 +54,7 @@ def budget_blocks(view: BalanceView, *, dry_run: bool, synced: str | None = None
         quote("Семантика полей баланса не подтверждена — см. docs/agent-recon.md, раздел 2."),
         paragraph(f"Режим: {mode}."),
         paragraph(synced) if synced else None,
+        paragraph(llm) if llm else None,
         button_row([("Синхронизировать", "agent:sync", PRIMARY), ("Меню", "nav:menu", LINK)]),
     ]
 
@@ -56,7 +68,7 @@ async def cmd_budget(event: Event, agent: AgentServices) -> None:
     except (AdsApiError, AdsTransportError) as exc:
         await show_error(event, exc)
         return
-    await reply_rich(event, *budget_blocks(view, dry_run=agent.config.dry_run))
+    await reply_rich(event, *budget_blocks(view, dry_run=agent.config.dry_run, llm=llm_line(agent)))
 
 
 @router.callback_query(F.data == "agent:sync")
@@ -72,4 +84,4 @@ async def cb_sync(event: Event, agent: AgentServices) -> None:
         f"Синхронизировано: объявлений {result.ads_seen}, новых снимков {result.ad_snapshots_added}, "
         f"строк статистики {result.stats_rows}."
     )
-    await reply_rich(event, *budget_blocks(view, dry_run=agent.config.dry_run, synced=note))
+    await reply_rich(event, *budget_blocks(view, dry_run=agent.config.dry_run, synced=note, llm=llm_line(agent)))

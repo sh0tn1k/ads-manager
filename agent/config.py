@@ -96,6 +96,7 @@ class AgentConfig(BaseSettings):
     history_top_n: int = Field(default=3, validation_alias=AliasChoices("AGENT_HISTORY_TOP_N", "history_top_n"))
     ledger_top_n: int = Field(default=5, validation_alias=AliasChoices("AGENT_LEDGER_TOP_N", "ledger_top_n"))
     ledger_min_joins: int = Field(default=1, validation_alias=AliasChoices("AGENT_LEDGER_MIN_JOINS", "ledger_min_joins"))
+    channel_description: str = Field(default="", validation_alias=AliasChoices("AGENT_CHANNEL_DESCRIPTION", "channel_description"))
     add_control: bool = Field(default=True, validation_alias=AliasChoices("AGENT_ADD_CONTROL", "add_control"))
 
     # --- files ---
@@ -115,6 +116,14 @@ class AgentConfig(BaseSettings):
     llm_price_cache_read_per_mtok: float | None = Field(
         default=None, validation_alias=AliasChoices("LLM_PRICE_CACHE_READ_PER_MTOK", "llm_price_cache_read_per_mtok")
     )
+    llm_price_cache_write_per_mtok: float | None = Field(
+        default=None, validation_alias=AliasChoices("LLM_PRICE_CACHE_WRITE_PER_MTOK", "llm_price_cache_write_per_mtok")
+    )
+    llm_price_web_search_per_1k: float | None = Field(
+        default=None, validation_alias=AliasChoices("LLM_PRICE_WEB_SEARCH_PER_1K", "llm_price_web_search_per_1k")
+    )
+    llm_max_tokens: int = Field(default=2048, validation_alias=AliasChoices("LLM_MAX_TOKENS", "llm_max_tokens"))
+    llm_web_search_max_uses: int = Field(default=5, validation_alias=AliasChoices("LLM_WEB_SEARCH_MAX_USES", "llm_web_search_max_uses"))
     llm_max_retries: int = Field(default=2, validation_alias=AliasChoices("LLM_MAX_RETRIES", "llm_max_retries"))
 
     @field_validator(
@@ -130,6 +139,8 @@ class AgentConfig(BaseSettings):
         "llm_price_input_per_mtok",
         "llm_price_output_per_mtok",
         "llm_price_cache_read_per_mtok",
+        "llm_price_cache_write_per_mtok",
+        "llm_price_web_search_per_1k",
         mode="before",
     )
     @classmethod
