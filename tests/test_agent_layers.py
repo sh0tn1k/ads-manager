@@ -40,3 +40,10 @@ def test_model_planner_sim_are_pure():
                 continue
             names = _imports(p)
             assert not any(n == b or n.startswith(b + ".") for n in names for b in banned), p
+
+
+def test_candidates_never_call_the_api_or_executor_directly():
+    banned = ("ads_api.client", "agent.executor", "bot", "aiogram")
+    for p in (ROOT / "agent" / "candidates").rglob("*.py"):
+        names = _imports(p)
+        assert not any(n == b or n.startswith(b + ".") for n in names for b in banned), p

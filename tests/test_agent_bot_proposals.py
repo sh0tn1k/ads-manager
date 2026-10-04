@@ -118,3 +118,33 @@ async def test_proposals_list_and_card_callback_sizes(ui):
     for p in services.proposals.pending():
         rich(*proposal_card(p))  # builds without exceeding 64-byte callback data
         assert CALLBACK_RE.match(f"prop:rc-creative:{p.proposal_id}")
+
+
+@pytest.mark.asyncio
+async def test_propose_without_owner_inputs_says_why(ui, tmp_path):
+    from bot.handlers.proposals import cmd_propose
+
+    services, fake, _ = build_services(geo_pool_path=str(tmp_path / "none.yaml"))
+    await cmd_propose(_msg("/propose"), services)
+    text = _texts(ui.send_rich_message.await_args.kwargs["rich_message"])
+    assert "Предложений нет" in text and "не задан порог HURDLE_CPA_TON" in text
+    assert services.proposals.pending() == [] and fake.mutating_calls == []
+
+
+@pytest.mark.asyncio
+async def test_propose_creates_cards_from_geo_pool(ui, tmp_path):
+    from bot.handlers.proposals import cmd_propose
+
+    geo = tmp_path / "geo.yaml"
+    geo.write_text("groups:\n  uk: [GB]\n  de: [DE]\nbase_cpm: 0.12\n")
+    creatives = tmp_path / "cr.yaml"
+    creatives.write_text("creatives:\n  - angle: news\n    text: Daily Premier League news\n")
+    services, fake, _ = build_services(
+        hurdle_cpa_ton=0.2, explore_share=0.2, max_loss_per_hypothesis=5.0, max_active_experiments=5, mc_samples=300,
+        geo_pool_path=str(geo), creatives_path=str(creatives), external_placements_path=str(tmp_path / "x.csv"),
+    )
+    await cmd_propose(_msg("/propose"), services)
+    text = _texts(ui.send_rich_message.await_args.kwargs["rich_message"])
+    assert "Новых предложений" in text
+    assert 1 <= len(services.proposals.pending()) <= services.config.max_pending_proposals
+    assert fake.mutating_calls == []
