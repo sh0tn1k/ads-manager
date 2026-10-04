@@ -8,6 +8,7 @@ from aiogram.types import CallbackQuery, Message, TelegramObject
 from aiogram.utils.chat_action import ChatActionSender
 
 from ads_api.client import AdsClient
+from agent.services import AgentServices
 from bot.ab import AbStore
 from bot.library import LibraryStore
 from bot.rules import RuleStore
@@ -80,6 +81,17 @@ class AbStoreMiddleware(BaseMiddleware):
 
     async def __call__(self, handler, event: TelegramObject, data: dict[str, Any]):
         data["abtests"] = self.store
+        return await handler(event, data)
+
+
+class AgentMiddleware(BaseMiddleware):
+    """Expose the proposals agent (store, sync, balance, proposals) to handlers as ``agent``."""
+
+    def __init__(self, services: AgentServices) -> None:
+        self.services = services
+
+    async def __call__(self, handler, event: TelegramObject, data: dict[str, Any]):
+        data["agent"] = self.services
         return await handler(event, data)
 
 

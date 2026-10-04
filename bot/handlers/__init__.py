@@ -3,6 +3,7 @@ from bot.handlers.accounts import router as accounts_router
 from bot.handlers.ads import router as ads_router
 from bot.handlers.audiences import router as audiences_router
 from bot.handlers.billing import router as billing_router
+from bot.handlers.budget import router as budget_router
 from bot.handlers.library import router as library_router
 from bot.handlers.media import router as media_router
 from bot.handlers.menu import router as menu_router
@@ -18,6 +19,7 @@ routers = (
     library_router,
     ab_router,
     billing_router,
+    budget_router,
     audiences_router,
     pixels_router,
     rules_router,
