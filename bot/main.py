@@ -14,6 +14,8 @@ from aiogram.types import BotCommand, ErrorEvent
 from ads_api.client import AdsClient
 from ads_api.config import AdsApiConfig
 from ads_api.errors import AdsApiError, AdsTransportError
+from agent.config import AgentConfig
+from agent.services import AgentServices
 from bot.config import BotConfig
 from bot.handlers import routers
 from bot.handlers.menu import show_error
@@ -21,6 +23,7 @@ from bot.ab import AbStore
 from bot.library import LibraryStore
 from bot.middlewares import (
     AbStoreMiddleware,
+    AgentMiddleware,
     AdsClientMiddleware,
     AllowlistMiddleware,
     LibraryStoreMiddleware,
@@ -57,6 +60,7 @@ async def _set_commands(bot: Bot) -> None:
             BotCommand(command="rules", description="Правила автостопа"),
             BotCommand(command="create_ad", description="Создать объявление"),
             BotCommand(command="account", description="Текущий аккаунт"),
+            BotCommand(command="budget", description="Баланс и резервы агента"),
             BotCommand(command="cancel", description="Отменить мастер"),
         ]
     )
@@ -115,11 +119,13 @@ async def run() -> None:
     dp = Dispatcher(storage=storage)
 
     ads = AdsClient.from_config(ads_cfg)
+    agent = AgentServices.build(ads, AgentConfig())
     dp.update.outer_middleware(AllowlistMiddleware(bot_cfg.allowed_ids))
     dp.update.outer_middleware(AdsClientMiddleware(ads))
     dp.update.outer_middleware(RuleStoreMiddleware(rule_store))
     dp.update.outer_middleware(LibraryStoreMiddleware(library_store))
     dp.update.outer_middleware(AbStoreMiddleware(ab_store))
+    dp.update.outer_middleware(AgentMiddleware(agent))
     dp.message.middleware(UiContextMiddleware())
     dp.callback_query.middleware(UiContextMiddleware())
     dp.message.middleware(TypingMiddleware())
@@ -173,6 +179,7 @@ async def run() -> None:
         except asyncio.CancelledError:
             pass
         await ads.aclose()
+        agent.store.close()
         await bot.session.close()
 
 
